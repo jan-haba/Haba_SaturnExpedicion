@@ -1,0 +1,148 @@
+{
+  "rooms": [
+    {
+      "name": "Electrical",
+      "id": "electrical",
+      "description": "There is a lot of electrical things",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Hall",
+      "id": "hall",
+      "description": "Hall connects all rooms.",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Electrical","Admin", "Engine 1", "Engine 2", "Escape Module 1", "Escape Module 2", "Reactor", "Cockpit", "Storage", "Kitchen", "Mark & Lucy Room", "Captain & Caroline Room"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Admin",
+      "id": "admin",
+      "description": "Administration room",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Engine 1",
+      "id": "engine_1",
+      "description": "Destroyed engine",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": false,
+      "requiredCode": 0
+    },
+    {
+      "name": "Engine 2",
+      "id": "engine_2",
+      "description": "Working engine",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Cockpit",
+      "id": "cockpit",
+      "description": "Cockpit of the spaceship",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Escape Module 1",
+      "id": "escape_module_1",
+      "description": "Destroyed module womp womp",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": false,
+      "requiredCode": 0
+    },
+    {
+      "name": "Escape Module 2",
+      "id": "escape_module_2",
+      "description": "Espace module womp womp",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Reactor",
+      "id": "reactor",
+      "description": "Reactor of the spaceship",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Storage",
+      "id": "storage",
+      "description": "There are stored things.",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Kitchen",
+      "id": "kitchen",
+      "description": "Kitchen, place where food is eaten",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Mark & Lucy Room",
+      "id": "mark_lucy_room",
+      "description": "there sleeps Mark and Lucy",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": true,
+      "requiredCode": 0
+    },
+    {
+      "name": "Captain & Caroline Room",
+      "id": "captain_caroline_room",
+      "description": "there sleeps Captain and Caroline",
+      "items": [],
+      "characters": [],
+      "objects": [],
+      "exits":["Hall"],
+      "isAccessible": false,
+      "requiredCode": 0
+
+    }
+  ]
+}
