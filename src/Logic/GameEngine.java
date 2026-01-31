@@ -11,7 +11,9 @@ public class GameEngine {
 
     public GameEngine( ) {
         this.gameData = GameData.loadGameDataFromResources("/gamedata.json");
-        this.player = new Player();
+        gameData.convertItems();
+        gameData.linkItemsToRooms();
+        this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false);
         this.commands = new HashMap<>();
     }
 
@@ -19,7 +21,7 @@ public class GameEngine {
      * method that loads all the commands
      */
     public void putCommands(){
-        commands.put("movement", new GoTo(player, gameData));
+        commands.put("go", new GoTo(player, gameData));
     }
 
     /**
