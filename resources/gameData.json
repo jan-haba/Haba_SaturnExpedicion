@@ -1,12 +1,115 @@
 {
+  "itemsRaw": [
+    {
+      "name": "Fire Extinguisher",
+      "type": "Item",
+      "id": "fire_extinguisher",
+      "description": "use Fire Extinguisher to extinguish fire"
+    },
+    {
+      "name": "Mark's Toolkit",
+      "type": "Toolkit",
+      "id": "marks_toolkit",
+      "description": "toolkit that Mark uses to repair stuff on spaceship",
+      "tools": [
+        {
+          "name": "Calibrator",
+          "type": "Item",
+          "id": "calibrator",
+          "description": "calibrator"
+        },
+        {
+          "name": "Welding machine",
+          "type": "Item",
+          "id": "welding_machine",
+          "description": "Just a welding machine"
+        },
+        {
+          "name": "Drill",
+          "type": "Item",
+          "id": "drill",
+          "description": "UK DRILLLL"
+        },
+        {
+          "name": "Hammer",
+          "type": "Item",
+          "id": "",
+          "description": "warhammer titan"
+        }
+      ]
+    },
+    {
+      "name" : "Suit",
+      "type": "Suit",
+      "id": "suit",
+      "description": "Suit against radiation"
+    },
+    {
+      "name": "Fuel",
+      "type": "Item",
+      "id": "fuel",
+      "description": "fuel used to power Escape Modules"
+    },
+    {
+      "name": "Emergency kit",
+      "type": "Item",
+      "id": "emergency_kit",
+      "description": "emergency kit for the worst case scenarios"
+    },
+    {
+      "name": "Photo",
+      "type": "Item",
+      "id": "photo",
+      "description": "knee grow"
+    },
+    {
+      "name": "Note",
+      "type": "Note",
+      "id": "note_1",
+      "description": "code to room",
+      "code": 0
+    },
+    {
+      "name": "Note",
+      "type": "Note",
+      "id": "note_2",
+      "description": "code to panel",
+      "code": 0
+    },
+    {
+      "name": "Reactor Card",
+      "type": "Card",
+      "id": "reactor_card",
+      "description": "card to reactor"
+    },
+    {
+      "name": "E.M.Card 1",
+      "type": "Card",
+      "id": "e_m_card_1",
+      "description": "card to E.M.1"
+    },
+    {
+      "name": "E.M.Card 2",
+      "type": "Card",
+      "id": "e_m_card_2",
+      "description": "card to E.M.2"
+    }
+  ],
+
+  "characters": [
+    {
+
+    }
+  ],
+
   "rooms": [
     {
       "name": "Electrical",
       "id": "electrical",
       "description": "There is a lot of electrical things",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": [],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -15,9 +118,9 @@
       "name": "Hall",
       "id": "hall",
       "description": "Hall connects all rooms.",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": [],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Electrical","Admin", "Engine 1", "Engine 2", "Escape Module 1", "Escape Module 2", "Reactor", "Cockpit", "Storage", "Kitchen", "Mark & Lucy Room", "Captain & Caroline Room"],
       "isAccessible": true,
       "requiredCode": 0
@@ -26,9 +129,9 @@
       "name": "Admin",
       "id": "admin",
       "description": "Administration room",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": ["e_m_card_1","note_2"],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -37,9 +140,9 @@
       "name": "Engine 1",
       "id": "engine_1",
       "description": "Destroyed engine",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": [],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": false,
       "requiredCode": 0
@@ -48,9 +151,9 @@
       "name": "Engine 2",
       "id": "engine_2",
       "description": "Working engine",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": ["fuel"],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -59,9 +162,9 @@
       "name": "Cockpit",
       "id": "cockpit",
       "description": "Cockpit of the spaceship",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": ["reactor_card"],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -70,9 +173,9 @@
       "name": "Escape Module 1",
       "id": "escape_module_1",
       "description": "Destroyed module womp womp",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": [],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": false,
       "requiredCode": 0
@@ -81,9 +184,9 @@
       "name": "Escape Module 2",
       "id": "escape_module_2",
       "description": "Espace module womp womp",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": [],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -92,9 +195,9 @@
       "name": "Reactor",
       "id": "reactor",
       "description": "Reactor of the spaceship",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": ["fire_extinguisher"],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -103,9 +206,9 @@
       "name": "Storage",
       "id": "storage",
       "description": "There are stored things.",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": ["suit","emergency_kit"],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -114,9 +217,9 @@
       "name": "Kitchen",
       "id": "kitchen",
       "description": "Kitchen, place where food is eaten",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": ["note_1"],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -125,9 +228,9 @@
       "name": "Mark & Lucy Room",
       "id": "mark_lucy_room",
       "description": "there sleeps Mark and Lucy",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": ["marks_toolkit","photo"],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0
@@ -136,9 +239,9 @@
       "name": "Captain & Caroline Room",
       "id": "captain_caroline_room",
       "description": "there sleeps Captain and Caroline",
-      "items": [],
-      "characters": [],
-      "objects": [],
+      "itemsRaw": ["e_m_card_2"],
+      "charactersRaw": [],
+      "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": false,
       "requiredCode": 0

@@ -1,5 +1,6 @@
 package Logic;
 
+import Items.*;
 import Objects.Room;
 import com.google.gson.Gson;
 
@@ -10,9 +11,13 @@ import java.util.ArrayList;
 
 public class GameData {
     public ArrayList<Room>rooms;
+    public ArrayList<Item>items;
+    public ArrayList<ItemRaw>itemsRaw;
 
     public GameData() {
         this.rooms = new ArrayList<>();
+        this.itemsRaw = new ArrayList<>();
+        this.items = new ArrayList<>();
     }
 
     /**
@@ -53,4 +58,67 @@ public class GameData {
         }
         throw new IllegalArgumentException("Room wasnt found with this name");
     }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+
+
+    public void convertItems(){
+        for (ItemRaw itemRaw : itemsRaw){
+            Item item;
+            switch (itemRaw.type){
+                case "Note":
+                    Note note = new Note(itemRaw.name, itemRaw.type,itemRaw.id,itemRaw.description,0);
+                    note.setCode();
+                    item = note;
+                    break;
+                case "Suit":
+                    Suit suit = new Suit(itemRaw.name,itemRaw.type,itemRaw.id, itemRaw.description);
+                    item = suit;
+                    break;
+                case "Card":
+                    Card card = new Card(itemRaw.name, itemRaw.type, itemRaw.id, itemRaw.description);
+                    item = card;
+                    break;
+                case "Toolkit":
+                    Toolkit toolkit = new Toolkit(itemRaw.name, itemRaw.type, itemRaw.id, itemRaw.description);
+                    item = toolkit;
+                    break;
+                default:
+                    Item ajtem = new Item(itemRaw.name,itemRaw.type,itemRaw.id, itemRaw.description);
+                    item = ajtem;
+                    break;
+            }
+            items.add(item);
+        }
+    }
+    public void linkItemsToRooms() {
+        for (Room r : rooms) {
+            if (r.getItemsRaw() != null) {
+                for (String id : r.getItemsRaw()) {
+                    Item found = findItemById(id);
+                    if (found != null) {
+                        r.addItem(found);
+                    }
+                }
+            }
+        }
+    }
+
+    private Item findItemById(String id) {
+        for (Item i : items) {
+            if (i.getId().equals(id)) return i;
+        }
+        return null;
+    }
+
+    }
+class ItemRaw{
+    String id;
+    String name;
+    String description;
+    String type;
 }
+
