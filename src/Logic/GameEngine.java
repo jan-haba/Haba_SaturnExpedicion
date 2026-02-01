@@ -7,28 +7,21 @@ import java.util.HashMap;
 public class GameEngine {
     private Player player;
     private GameData gameData;
-    private HashMap<String, Command>commands;
+    private Console console;
 
     public GameEngine( ) {
         this.gameData = GameData.loadGameDataFromResources("/gamedata.json");
         gameData.convertItems();
         gameData.linkItemsToRooms();
         this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false);
-        this.commands = new HashMap<>();
-    }
+        this.console = new Console(player,gameData);
 
-    /**
-     * method that loads all the commands
-     */
-    public void putCommands(){
-        commands.put("go", new GoTo(player, gameData));
     }
-
     /**
      * method that starts the game
      */
     public void start(){
-        putCommands();
+        console.start();
     }
 
     public GameData getGameData() {

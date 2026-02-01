@@ -58,12 +58,14 @@ public class GameData {
         }
         throw new IllegalArgumentException("Room wasnt found with this name");
     }
-
-    public ArrayList<Item> getItems() {
-        return items;
+    public Item locateItem(String itemName){
+        for (Item item: items){
+            if(item.getName().equals(itemName)){
+                return item;
+            }
+        }
+        throw new IllegalArgumentException("Item wasnt found with this name");
     }
-
-
 
     public void convertItems(){
         for (ItemRaw itemRaw : itemsRaw){
@@ -109,7 +111,16 @@ public class GameData {
 
     private Item findItemById(String id) {
         for (Item i : items) {
-            if (i.getId().equals(id)) return i;
+            if (i.getId().equals(id))
+                return i;
+        }
+        return null;
+    }
+    private Item findItemByName(String name){
+        for(Item i : items){
+            if (i.getName().equals(name)){
+                return i;
+            }
         }
         return null;
     }

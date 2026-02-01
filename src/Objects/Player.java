@@ -17,10 +17,28 @@ public class Player {
     }
     public Player() {
     }
+    public Item[] openInventory() {
+        return inventory;
+    }
+    public String pickUp(Item item) {
+        for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i] == null){
+                inventory[i] = item;
+                return "item was picked up";
+            }
+        }
+        return "inventory is full";
+    }
+    public String dropDown(Item item) {
+        for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i].getName().equals(item.getName())){
+                inventory[i] = null;
+                return "item was droped down";
+            }
+        }
+        return "item wasnt found in the inventory";
+    }
 
-    public String pickUp(Item item) {return null;}
-    public String dropDown(Item item) {return null;}
-    public String openInventory() {return null;}
     public void equipSuit(){};
     public boolean hasItem(String itemName){return true;}
     public String use(Item item){return null;}
@@ -42,6 +60,10 @@ public class Player {
 
     public void setCurrRoom(Room currRoom) {
         this.currRoom = currRoom;
+    }
+
+    public Item[] getInventory() {
+        return inventory;
     }
 }
 

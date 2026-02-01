@@ -71,4 +71,7 @@ public class Room {
         return exits;
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
 }

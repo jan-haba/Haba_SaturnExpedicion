@@ -14,7 +14,6 @@ public class GoTo implements Command {
         this.player = player;
         this.data = data;
     }
-
     /**
      * execute method
      * @param command players command
@@ -22,8 +21,10 @@ public class GoTo implements Command {
      */
     @Override
     public String execute(String command) {
-        move(command);
-        return "Player has moved";
+        if (command.isEmpty()) {
+            return "write where zou wanna go";
+        }
+        return move(command);
     }
 
     /**
@@ -34,11 +35,12 @@ public class GoTo implements Command {
     public String move(String roomName){
         if (player.getCurrRoom().getExits().contains(roomName)){
             player.setCurrRoom(data.locateRoom(roomName));
+            return "player moved";
         }else{
+            System.out.println(player.getCurrRoom());
             return "room wasnt found or it doesnt connect to that room";
 
         }
-        return "";
     }
 
     /**
