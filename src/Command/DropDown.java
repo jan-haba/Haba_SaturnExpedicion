@@ -17,7 +17,7 @@ public class DropDown implements Command{
         room = player.getCurrRoom();
         Item itemFound = null;
         for (Item item : player.getInventory()){
-            if (item.getName().equals(command)){
+            if (item.getName().equalsIgnoreCase(command)){
                 itemFound = item;
                 break;
             }

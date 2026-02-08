@@ -96,9 +96,70 @@
     }
   ],
 
+  "gameObjectRaws":[
+    {
+      "type": "Storage",
+      "id": "storage",
+      "name": "Storage Rack",
+      "description": "Items are stored here",
+      "itemsRaw": ["emergency_kit", "suit"]
+    }
+  ],
+
+
+
+
   "characters": [
     {
-
+      "name": "Lucy",
+      "description": "Woman",
+      "id": "lucy",
+      "itemsRaw": [],
+      "currRoom": null,
+      "dialogues": {
+        "1": "Stay here Lucy",
+        "2": "Come with me Lucy"
+      },
+      "isFollower": false
+    },
+    {
+      "name": "Caroline",
+      "description": "Woman",
+      "id": "caroline",
+      "itemsRaw": [],
+      "currRoom": null,
+      "dialogues": {
+        "1": "dialog1",
+        "2": "Come with me Lucy"
+      },
+      "isFollower": false
+    },
+    {
+      "name": "Captain",
+      "description": "Captain",
+      "id": "captain",
+      "itemsRaw": ["reactor_card", "e_m_card_2"],
+      "items": [
+        {
+          "name": "E.M.Card 2",
+          "type": "Card",
+          "id": "e_m_card_2",
+          "description": "card to E.M.2"
+        }, {
+          "name": "Reactor Card",
+          "type": "Card",
+          "id": "reactor_card",
+          "description": "card to reactor"
+        }
+      ],
+      "currRoom": null,
+      "dialogues": {
+        "1": "dialog1",
+        "2": "dialog2",
+        "3": "dialog3",
+        "4": "dialog4"
+      },
+      "isFollower": false
     }
   ],
 
@@ -206,9 +267,10 @@
       "name": "Storage",
       "id": "storage",
       "description": "There are stored things.",
-      "itemsRaw": ["suit","emergency_kit"],
+      "itemsRaw": [],
+      "items": [],
       "charactersRaw": [],
-      "objectsRaw": [],
+      "gameObjectsRaw": ["storage"],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0

@@ -12,7 +12,9 @@ public class GameEngine {
     public GameEngine( ) {
         this.gameData = GameData.loadGameDataFromResources("/gamedata.json");
         gameData.convertItems();
+        gameData.convertObjects();
         gameData.linkItemsToRooms();
+        gameData.linkObjectsToRooms();
         this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false);
         this.console = new Console(player,gameData);
 

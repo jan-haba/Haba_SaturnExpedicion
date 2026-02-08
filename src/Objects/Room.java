@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import Items.Item;
+import Logic.GameEngine;
 
 public class Room {
     private String name;
@@ -13,8 +14,8 @@ public class Room {
     private ArrayList<Item>items = new ArrayList<>();
     private ArrayList<String>charactersRaw;
     private ArrayList<Character>characters = new ArrayList<>();
-    private ArrayList<String>objectsRaw;
-    private ArrayList<Object>object = new ArrayList<>();
+    private ArrayList<String>gameObjectsRaw;
+    private ArrayList<GameObject>gameObjects = new ArrayList<>();
     private ArrayList<String>exits;
     private boolean isAccessible;
     private int requiredCode;
@@ -24,6 +25,12 @@ public class Room {
             this.items = new ArrayList<>();
         }
         this.items.add(item);
+    }
+    public void addObject(GameObject objects){
+        if (this.gameObjects == null){
+            this.gameObjects = new ArrayList<>();
+        }
+        this.gameObjects.add(objects);
     }
 
     public ArrayList<String> getItemsRaw() {
@@ -38,8 +45,6 @@ public class Room {
         this.items = new ArrayList<>();
         this.charactersRaw = new ArrayList<>();
         this.characters = new ArrayList<>();
-        this.objectsRaw = new ArrayList<>();
-        this.object = new ArrayList<>();
         this.exits = new ArrayList<>();
         this.isAccessible = isAccessible;
         this.requiredCode = requiredCode;
@@ -55,13 +60,64 @@ public class Room {
                 ", items=" + items +
                 ", charactersRaw=" + charactersRaw +
                 ", characters=" + characters +
-                ", objectsRaw=" + objectsRaw +
-                ", object=" + object +
+                ", gameObjectsRaw=" + gameObjectsRaw +
+                ", gameObjects=" + gameObjects +
                 ", exits=" + exits +
                 ", isAccessible=" + isAccessible +
                 ", requiredCode=" + requiredCode +
                 '}';
     }
+    public String getRoom(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n==================================================\n");
+        sb.append(" LOCATION: ").append(name.toUpperCase()).append("\n");
+        sb.append("==================================================\n");
+        sb.append(description).append("\n\n");
+
+        sb.append("ITEMS: ");
+        if (items == null || items.isEmpty()) {
+            sb.append("none\n");
+        } else {
+            sb.append("\n");
+            for (Item item : items) {
+                sb.append("  - ").append(item.getName()).append("\n");
+            }
+        }
+        sb.append("\n");
+
+        sb.append("OBJECTS: ");
+        if (gameObjects == null || gameObjects.isEmpty()) {
+            sb.append("none\n");
+        } else {
+            sb.append("\n");
+            for (GameObject obj : gameObjects) {
+                sb.append("  [ ").append(obj.getName()).append(" ]\n");
+            }
+        }
+        sb.append("\n");
+
+            sb.append("CHARACTERS: ");
+            if (characters == null || characters.isEmpty()) {
+                sb.append("none\n");
+            } else {
+                sb.append("\n");
+                for (Character character : characters) {
+                    sb.append("  ( ").append(character.getName()).append(" )\n");
+                }
+            }
+
+        sb.append("\nAVAILABLE EXITS: ");
+        if (exits == null || exits.isEmpty()) {
+            sb.append("none (you are trapped!)");
+        } else {
+            sb.append("\n");
+            for (String exit : exits) {
+                sb.append("  ==> ").append(exit).append("\n");
+            }}
+        return sb.toString();}
+
+
+
 
     public String getName() {
         return name;
@@ -73,5 +129,13 @@ public class Room {
 
     public ArrayList<Item> getItems() {
         return items;
+    }
+
+    public ArrayList<String> getGameObjectsRaw() {
+        return gameObjectsRaw;
+    }
+
+    public ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
     }
 }

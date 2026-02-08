@@ -35,11 +35,9 @@ public class GoTo implements Command {
     public String move(String roomName){
         if (player.getCurrRoom().getExits().contains(roomName)){
             player.setCurrRoom(data.locateRoom(roomName));
-            return "player moved";
+            return player.getCurrRoom().getRoom() + "player has moved";
         }else{
-            System.out.println(player.getCurrRoom());
             return "room wasnt found or it doesnt connect to that room";
-
         }
     }
 

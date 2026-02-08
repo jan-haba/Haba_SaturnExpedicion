@@ -7,8 +7,9 @@ public class Help implements Command {
 
     @Override
     public String execute(String command) {
+        System.out.println("=== AVAILABLE COMMANDS ===");
         System.out.println(console.getKeySet());
-        return "ahoj tadz help";
+        return "";
     }
 
     @Override

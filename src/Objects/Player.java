@@ -2,7 +2,11 @@ package Objects;
 
 import Items.Item;
 import java.util.Arrays;
+import java.util.Optional;
 
+/**
+ * class that handles player
+ */
 public class Player {
     private Item[] inventory;
     private String name;
@@ -15,11 +19,26 @@ public class Player {
         this.currRoom = currRoom;
         this.isSuitEquiped = isSuitEquiped;
     }
-    public Player() {
-    }
+
+    /**
+     * method that lets load inventory
+     * @return inventory
+     */
     public Item[] openInventory() {
-        return inventory;
+        System.out.println("\n==========================================");
+        System.out.println("             INVENTORY             ");
+        System.out.println("==========================================");
+        for (int i = 0; i < inventory.length; i++) {
+            System.out.println("-" + inventory[i]);
+        }
+        return null;
     }
+
+    /**
+     * method tha
+     * @param item
+     * @return
+     */
     public String pickUp(Item item) {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null){
@@ -31,7 +50,7 @@ public class Player {
     }
     public String dropDown(Item item) {
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i].getName().equals(item.getName())){
+            if (inventory[i].getName().equalsIgnoreCase(item.getName())){
                 inventory[i] = null;
                 return "item was droped down";
             }

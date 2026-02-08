@@ -1,7 +1,10 @@
 package Logic;
 
 import Items.*;
+import Objects.Character;
+import Objects.GameObject;
 import Objects.Room;
+import Objects.Storage;
 import com.google.gson.Gson;
 
 import java.io.InputStream;
@@ -13,11 +16,17 @@ public class GameData {
     public ArrayList<Room>rooms;
     public ArrayList<Item>items;
     public ArrayList<ItemRaw>itemsRaw;
+    public ArrayList<GameObjectRaw>gameObjectRaws;
+    public ArrayList<GameObject>gameObjects;
+    public ArrayList<Character>characters;
 
     public GameData() {
         this.rooms = new ArrayList<>();
         this.itemsRaw = new ArrayList<>();
         this.items = new ArrayList<>();
+        this.characters = new ArrayList<>();
+        this.gameObjects = new ArrayList<>();
+        this.gameObjectRaws = new ArrayList<>();
     }
 
     /**
@@ -125,11 +134,63 @@ public class GameData {
         return null;
     }
 
+    public ArrayList<Character> getCharacters() {
+        return characters;
     }
+    public void convertObjects() {
+        for (GameObjectRaw raw : gameObjectRaws) {
+            if (raw.type.equals("Storage")) {
+                ArrayList<Item> storageInventory = new ArrayList<>();
+                if (raw.itemsRaw != null) {
+                    for (String itemId : raw.itemsRaw) {
+                        Item realItem = findItemById(itemId);
+                        if (realItem != null) {
+                            storageInventory.add(realItem);
+                        }
+                    }
+                }
+                Storage storage = new Storage(raw.name, raw.id, raw.description, storageInventory);
+                gameObjects.add(storage);
+            }
+        }
+    }
+
+    public ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+    public void linkObjectsToRooms() {
+        for (Room r : rooms) {
+            if (r.getGameObjectsRaw() != null) {
+                for (String objectId : r.getGameObjectsRaw()) {
+                    GameObject found = findObjectById(objectId);
+                    if (found != null) {
+                        r.addObject(found);
+                    }
+                }
+            }
+        }
+    }
+    private GameObject findObjectById(String id) {
+        for (GameObject obj : gameObjects) {
+            if (obj.getId().equals(id)) {
+                return obj;
+            }
+        }
+        return null;
+    }
+}
 class ItemRaw{
     String id;
     String name;
     String description;
     String type;
+}
+
+class GameObjectRaw {
+    public String type;
+    public String id;
+    public String name;
+    public String description;
+    public ArrayList<String> itemsRaw;
 }
 
