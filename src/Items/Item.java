@@ -6,6 +6,7 @@ public class Item {
     private String id;
     private String description;
 
+
     public Item(String name, String type, String id, String description) {
         this.name = name;
         this.type = type;

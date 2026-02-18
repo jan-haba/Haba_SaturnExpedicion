@@ -1,12 +1,11 @@
 package Logic;
 
 import Items.*;
+import Objects.*;
 import Objects.Character;
-import Objects.GameObject;
-import Objects.Room;
-import Objects.Storage;
 import com.google.gson.Gson;
 
+import javax.tools.Tool;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -94,8 +93,9 @@ public class GameData {
                     item = card;
                     break;
                 case "Toolkit":
-                    Toolkit toolkit = new Toolkit(itemRaw.name, itemRaw.type, itemRaw.id, itemRaw.description);
+                    Toolkit toolkit = new Toolkit(itemRaw.name, itemRaw.type, itemRaw.id, itemRaw.description, itemRaw.toolsRaw);
                     item = toolkit;
+
                     break;
                 default:
                     Item ajtem = new Item(itemRaw.name,itemRaw.type,itemRaw.id, itemRaw.description);
@@ -133,10 +133,6 @@ public class GameData {
         }
         return null;
     }
-
-    public ArrayList<Character> getCharacters() {
-        return characters;
-    }
     public void convertObjects() {
         for (GameObjectRaw raw : gameObjectRaws) {
             if (raw.type.equals("Storage")) {
@@ -151,6 +147,18 @@ public class GameData {
                 }
                 Storage storage = new Storage(raw.name, raw.id, raw.description, storageInventory);
                 gameObjects.add(storage);
+            }
+            if(raw.type.equals("ControlPanel")) {
+                ControlPanel controlPanel = new ControlPanel(raw.name, raw.id, raw.description);
+                gameObjects.add(controlPanel);
+            }
+            if(raw.type.equals("Reactor")) {
+                Reactor reactor = new Reactor(raw.name, raw.id, raw.description);
+                gameObjects.add(reactor);
+            }
+            if(raw.type.equals("EscapeModule")) {
+                EscapeModule module = new EscapeModule(raw.name, raw.id, raw.description);
+                gameObjects.add(module);
             }
         }
     }
@@ -178,12 +186,29 @@ public class GameData {
         }
         return null;
     }
+    public void linkToolsToToolkits() {
+        for (Item toolkit: items) {
+            if (toolkit instanceof Toolkit) {
+                Toolkit tk = (Toolkit) toolkit;
+                if (tk.getToolsRaw() != null) {
+                    for (String id : tk.getToolsRaw()) {
+                        Item found = findItemById(id);
+                        if (found != null) {
+                            tk.addItem(found);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 }
 class ItemRaw{
     String id;
     String name;
     String description;
     String type;
+    ArrayList<String> toolsRaw;
 }
 
 class GameObjectRaw {

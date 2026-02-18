@@ -2,7 +2,6 @@ package Logic;
 
 import Command.*;
 import Objects.Player;
-import java.util.HashMap;
 
 public class GameEngine {
     private Player player;
@@ -13,6 +12,7 @@ public class GameEngine {
         this.gameData = GameData.loadGameDataFromResources("/gamedata.json");
         gameData.convertItems();
         gameData.convertObjects();
+        gameData.linkToolsToToolkits();
         gameData.linkItemsToRooms();
         gameData.linkObjectsToRooms();
         this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false);

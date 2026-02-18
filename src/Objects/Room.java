@@ -67,54 +67,53 @@ public class Room {
                 ", requiredCode=" + requiredCode +
                 '}';
     }
-    public String getRoom(){
+    public String getRoom() {
         StringBuilder sb = new StringBuilder();
+
+        // 1. Záhlaví a Popis (vypisujeme vždy)
         sb.append("\n==================================================\n");
         sb.append(" LOCATION: ").append(name.toUpperCase()).append("\n");
         sb.append("==================================================\n");
-        sb.append(description).append("\n\n");
+        sb.append(description).append("\n");
 
-        sb.append("ITEMS: ");
-        if (items == null || items.isEmpty()) {
-            sb.append("none\n");
-        } else {
-            sb.append("\n");
+        // 2. ITEMS - vypíše se jen, když nejsou null a nejsou prázdné
+        if (items != null && !items.isEmpty()) {
+            sb.append("\nITEMS:\n");
             for (Item item : items) {
                 sb.append("  - ").append(item.getName()).append("\n");
             }
         }
-        sb.append("\n");
 
-        sb.append("OBJECTS: ");
-        if (gameObjects == null || gameObjects.isEmpty()) {
-            sb.append("none\n");
-        } else {
-            sb.append("\n");
+        // 3. OBJECTS - vypíše se jen, když nejsou null a nejsou prázdné
+        if (gameObjects != null && !gameObjects.isEmpty()) {
+            sb.append("\nOBJECTS:\n");
             for (GameObject obj : gameObjects) {
                 sb.append("  [ ").append(obj.getName()).append(" ]\n");
             }
         }
-        sb.append("\n");
 
-            sb.append("CHARACTERS: ");
-            if (characters == null || characters.isEmpty()) {
-                sb.append("none\n");
-            } else {
-                sb.append("\n");
-                for (Character character : characters) {
-                    sb.append("  ( ").append(character.getName()).append(" )\n");
-                }
+        // 4. CHARACTERS - vypíše se jen, když nejsou null a nejsou prázdné
+        if (characters != null && !characters.isEmpty()) {
+            sb.append("\nCHARACTERS:\n");
+            for (Character character : characters) {
+                sb.append("  ( ").append(character.getName()).append(" )\n");
             }
+        }
 
-        sb.append("\nAVAILABLE EXITS: ");
+        // 5. EXITS - ty vypisujeme vždy, abychom věděli, kam jít
+        sb.append("\nAVAILABLE EXITS:\n");
         if (exits == null || exits.isEmpty()) {
-            sb.append("none (you are trapped!)");
+            sb.append("  ==> none (you are trapped!)\n");
         } else {
-            sb.append("\n");
             for (String exit : exits) {
                 sb.append("  ==> ").append(exit).append("\n");
-            }}
-        return sb.toString();}
+            }
+        }
+
+        sb.append("==================================================\n");
+
+        return sb.toString();
+    }
 
 
 

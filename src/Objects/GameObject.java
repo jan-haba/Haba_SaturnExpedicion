@@ -11,6 +11,9 @@ public class GameObject {
         this.description = description;
     }
 
+    public GameObject() {
+    }
+
     @Override
     public String toString() {
         return "GameObject{" +

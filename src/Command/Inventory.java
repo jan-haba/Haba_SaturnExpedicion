@@ -13,7 +13,8 @@ public class Inventory implements Command {
 
     @Override
     public String execute(String command) {
-        return Arrays.toString(player.openInventory());
+        player.openInventory();
+        return "inventory opened";
     }
 
     @Override

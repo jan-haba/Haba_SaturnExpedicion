@@ -24,14 +24,13 @@ public class Player {
      * method that lets load inventory
      * @return inventory
      */
-    public Item[] openInventory() {
+    public void openInventory() {
         System.out.println("\n==========================================");
         System.out.println("             INVENTORY             ");
         System.out.println("==========================================");
         for (int i = 0; i < inventory.length; i++) {
             System.out.println("-" + inventory[i]);
         }
-        return null;
     }
 
     /**
@@ -57,7 +56,6 @@ public class Player {
         }
         return "item wasnt found in the inventory";
     }
-
     public void equipSuit(){};
     public boolean hasItem(String itemName){return true;}
     public String use(Item item){return null;}

@@ -11,32 +11,7 @@
       "type": "Toolkit",
       "id": "marks_toolkit",
       "description": "toolkit that Mark uses to repair stuff on spaceship",
-      "tools": [
-        {
-          "name": "Calibrator",
-          "type": "Item",
-          "id": "calibrator",
-          "description": "calibrator"
-        },
-        {
-          "name": "Welding machine",
-          "type": "Item",
-          "id": "welding_machine",
-          "description": "Just a welding machine"
-        },
-        {
-          "name": "Drill",
-          "type": "Item",
-          "id": "drill",
-          "description": "UK DRILLLL"
-        },
-        {
-          "name": "Hammer",
-          "type": "Item",
-          "id": "",
-          "description": "warhammer titan"
-        }
-      ]
+      "toolsRaw": ["calibrator", "welding_machine", "drill", "hammer"]
     },
     {
       "name" : "Suit",
@@ -93,6 +68,30 @@
       "type": "Card",
       "id": "e_m_card_2",
       "description": "card to E.M.2"
+    },
+    {
+      "name": "Calibrator",
+      "type": "Item",
+      "id": "calibrator",
+      "description": "calibrator"
+    },
+    {
+      "name": "Welding machine",
+      "type": "Item",
+      "id": "welding_machine",
+      "description": "Just a welding machine"
+    },
+    {
+      "name": "Drill",
+      "type": "Item",
+      "id": "drill",
+      "description": "UK DRILLLL"
+    },
+    {
+      "name": "Hammer",
+      "type": "Item",
+      "id": "hammer",
+      "description": "warhammer titan"
     }
   ],
 
@@ -103,12 +102,28 @@
       "name": "Storage Rack",
       "description": "Items are stored here",
       "itemsRaw": ["emergency_kit", "suit"]
+    },
+    {
+      "type": "Reactor",
+      "id": "reactor",
+      "name": "Reactor",
+      "description": "all power comes from here"
+    },
+    {
+      "type": "ControlPanel",
+      "id": "control_panel",
+      "name": "Control Panel",
+      "description": "control something idk"
+    },
+    {
+      "type": "EscapeModule",
+      "id": "escape_module",
+      "name": "Escape Module #2",
+      "description": "escape module you escape with it"
+
     }
+
   ],
-
-
-
-
   "characters": [
     {
       "name": "Lucy",
