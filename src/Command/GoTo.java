@@ -33,12 +33,23 @@ public class GoTo implements Command {
      * @return
      */
     public String move(String roomName){
-        if (player.getCurrRoom().getExits().contains(roomName)){
-            player.setCurrRoom(data.locateRoom(roomName));
-            return player.getCurrRoom().getRoom() + "player has moved";
-        }else{
-            return "room wasnt found or it doesnt connect to that room";
+        String actualExit = null;
+        for (String exit : player.getCurrRoom().getExits()) {
+            if (exit.equalsIgnoreCase(roomName)) {
+                actualExit = exit;
+                break;
+            }
         }
+
+        // 2. Pokud jsme našli shodu
+        if (actualExit != null) {
+            player.setCurrRoom(data.locateRoom(actualExit));
+            // Bonus: Vrátíme popis nové místnosti pomocí tvého hezkého toString()
+            return player.getCurrRoom().getRoom() + "\nPlayer has moved to " + actualExit;
+        } else {
+            return "Room wasn't found or it doesn't connect to that room.";
+        }
+
     }
 
     /**

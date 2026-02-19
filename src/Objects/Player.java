@@ -1,6 +1,8 @@
 package Objects;
 
 import Items.Item;
+import Items.Suit;
+
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -18,6 +20,25 @@ public class Player {
         this.name = name;
         this.currRoom = currRoom;
         this.isSuitEquiped = isSuitEquiped;
+    }
+
+    public boolean hasSuit(){
+        for (Item item : inventory) {
+            if (item instanceof Suit) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeItem(String itemName){
+        for (int i = 0; i < inventory.length; i++) {
+            if (this.inventory[i] != null) {
+                if (inventory[i].getName().equals(itemName)) {
+                    inventory[i] = null;
+                }
+            }
+        }
     }
 
     /**
@@ -81,6 +102,10 @@ public class Player {
 
     public Item[] getInventory() {
         return inventory;
+    }
+
+    public void setSuitEquiped(boolean suitEquiped) {
+        isSuitEquiped = suitEquiped;
     }
 }
 

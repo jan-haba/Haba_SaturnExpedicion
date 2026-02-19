@@ -15,6 +15,15 @@ public class Toolkit extends Item {
         tools.add(item);
     }
 
+    public Item getItem(String name) {
+        for (Item item : tools) {
+            if (item.getName().equals(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<String> getToolsRaw() {
         return toolsRaw;
     }

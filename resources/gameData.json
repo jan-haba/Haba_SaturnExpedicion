@@ -273,10 +273,9 @@
       "description": "Reactor of the spaceship",
       "itemsRaw": ["fire_extinguisher"],
       "charactersRaw": [],
-      "objectsRaw": [],
+      "gameObjectsRaw": ["reactor"],
       "exits":["Hall"],
-      "isAccessible": true,
-      "requiredCode": 0
+      "isAccessible": true
     },
     {
       "name": "Storage",

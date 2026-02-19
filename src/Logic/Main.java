@@ -2,11 +2,10 @@ package Logic;
 
 import Command.*;
 
-
 public class Main {
     public static void main(String[] args) {
         GameEngine gameEngine = new GameEngine();
-        System.out.println(gameEngine.getGameData().gameObjects);
+        System.out.println(gameEngine.getGameData().getRooms());
         gameEngine.start();
 
 

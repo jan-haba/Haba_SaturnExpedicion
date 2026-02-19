@@ -20,6 +20,7 @@ public class Console {
         commands.put("pick", new PickUp(player));
         commands.put("drop", new DropDown(player));
         commands.put("end", new End());
+        commands.put("equip", new PutSuit(player));
     }
 
     public Console(Player player, GameData data) {
