@@ -31,4 +31,8 @@ public class GameObject {
     public String getName() {
         return name;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

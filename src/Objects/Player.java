@@ -29,6 +29,16 @@ public class Player {
         }
         return false;
     }
+    public boolean hasItemName(String itemName){
+        for (int i = 0; i < inventory.length; i++) {
+            if (this.inventory[i] != null) {
+                if (inventory[i].getName().equalsIgnoreCase(itemName)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public boolean hasItem(String itemID){
         for (int i = 0; i < inventory.length; i++) {
@@ -39,6 +49,17 @@ public class Player {
             }
         }
         return false;
+    }
+    public Item getItem(String itemName){
+        for (int i = 0; i < inventory.length; i++) {
+            if (this.inventory[i] != null) {
+                if (inventory[i].getName().equalsIgnoreCase(itemName)){
+                    return inventory[i];
+                }
+            }
+        }
+        return null;
+
     }
 
     public boolean addItem(Item item){

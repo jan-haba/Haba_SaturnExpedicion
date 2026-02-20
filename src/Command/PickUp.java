@@ -1,10 +1,14 @@
 package Command;
 
 import Items.Item;
+import Items.Toolkit;
 import Objects.GameObject;
 import Objects.Player;
 import Objects.Room;
 import Objects.Storage;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class PickUp implements Command{
     private Player player;
@@ -21,11 +25,22 @@ public class PickUp implements Command{
         for (Item item : room.getItems()){
             if (item.getName().equalsIgnoreCase(command)){
                 itemFound = item;
-                room.getItems().remove(itemFound);
                 break;
             }
         }
-        if(itemFound == null) {
+        if (itemFound != null) {
+            room.getItems().remove(itemFound);
+        }
+        if (itemFound == null){
+            for (Item item: player.getInventory()){
+                if (item instanceof Toolkit){
+                    Toolkit toolkit = (Toolkit) item;
+                     itemFound = toolkit.execute(player,command);
+                    if (itemFound != null) break;
+                }
+            }
+        }
+        if(itemFound == null && room.getGameObjects()!= null) {
             for (GameObject obj : room.getGameObjects()) {
                 if (obj instanceof Storage) {
                     Storage storage = (Storage) obj;
@@ -35,8 +50,7 @@ public class PickUp implements Command{
             }
         }
         if (itemFound != null){
-            String result = player.pickUp(itemFound);
-            return "Item " + itemFound.getName() + " was picked up.";
+            return player.pickUp(itemFound);
         }
         return "Item wasn't found anywhere.";
     }

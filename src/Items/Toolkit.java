@@ -14,23 +14,8 @@ public class Toolkit extends Item {
     }
 
     @Override
-    public String execute(Player player, String string) {
-        if (string == null || string.isEmpty()) {
-            return "You need to specify what you want to take from the toolkit.\n" + this.getDescription();
-        }
-        Item foundTool = null;
-        for (Item tool : this.tools) {
-            if (tool.getName().equalsIgnoreCase(string) || tool.getId().equalsIgnoreCase(string)) {
-                foundTool = tool;
-                break;
-            }
-        }
-        if (foundTool != null) {
-            player.addItem(foundTool);
-            this.tools.remove(foundTool);
-            return "You took the " + foundTool.getName() + " from the toolkit.";
-        }
-        return "There is no item named '" + string + "' in the toolkit.";
+    public Item execute(Player player, String string) {
+        return getItem(string);
     }
     @Override
     public String getDescription() {
@@ -52,7 +37,9 @@ public class Toolkit extends Item {
 
     public Item getItem(String name) {
         for (Item item : tools) {
-            if (item.getName().equals(name)) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                Item tool = item;
+                tools.remove(item);
                 return item;
             }
         }

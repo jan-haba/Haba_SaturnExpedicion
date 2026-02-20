@@ -1,10 +1,8 @@
 package Objects;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import Items.Item;
-import Logic.GameEngine;
 
 public class Room {
     private String name;
@@ -70,13 +68,11 @@ public class Room {
     public String getRoom() {
         StringBuilder sb = new StringBuilder();
 
-        // 1. Záhlaví a Popis (vypisujeme vždy)
         sb.append("\n==================================================\n");
         sb.append(" LOCATION: ").append(name.toUpperCase()).append("\n");
         sb.append("==================================================\n");
         sb.append(description).append("\n");
 
-        // 2. ITEMS - vypíše se jen, když nejsou null a nejsou prázdné
         if (items != null && !items.isEmpty()) {
             sb.append("\nITEMS:\n");
             for (Item item : items) {
@@ -84,7 +80,6 @@ public class Room {
             }
         }
 
-        // 3. OBJECTS - vypíše se jen, když nejsou null a nejsou prázdné
         if (gameObjects != null && !gameObjects.isEmpty()) {
             sb.append("\nOBJECTS:\n");
             for (GameObject obj : gameObjects) {
@@ -92,7 +87,6 @@ public class Room {
             }
         }
 
-        // 4. CHARACTERS - vypíše se jen, když nejsou null a nejsou prázdné
         if (characters != null && !characters.isEmpty()) {
             sb.append("\nCHARACTERS:\n");
             for (Character character : characters) {
@@ -100,7 +94,6 @@ public class Room {
             }
         }
 
-        // 5. EXITS - ty vypisujeme vždy, abychom věděli, kam jít
         sb.append("\nAVAILABLE EXITS:\n");
         if (exits == null || exits.isEmpty()) {
             sb.append("  ==> none (you are trapped!)\n");
@@ -113,6 +106,24 @@ public class Room {
         sb.append("==================================================\n");
 
         return sb.toString();
+    }
+
+    public Object findObject(String objectName){
+        if (items != null) {
+            for (Item item : items) {
+                if (item.getName().equalsIgnoreCase(objectName)) {
+                    return item;
+                }
+            }
+        }
+        if (gameObjects != null) {
+            for (GameObject gameObject : gameObjects) {
+                if (gameObject.getName().equalsIgnoreCase(objectName)) {
+                    return gameObject;
+                }
+            }
+        }
+        return null;
     }
 
 

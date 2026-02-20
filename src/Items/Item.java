@@ -16,8 +16,8 @@ public class Item {
         this.description = description;
     }
 
-    public String execute(Player player, String string){
-        return "this item cant be used";
+    public Item execute(Player player, String string){
+        return null;
     }
     public String getDescription(){
         return description;

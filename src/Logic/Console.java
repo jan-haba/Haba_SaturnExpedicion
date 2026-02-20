@@ -22,6 +22,7 @@ public class Console {
         commands.put("end", new End());
         commands.put("equip", new PutSuit(player));
         commands.put("interact",new Interact(player));
+        commands.put("examine", new Examine(player));
     }
 
     public Console(Player player, GameData data) {

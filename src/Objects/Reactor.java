@@ -1,14 +1,22 @@
 package Objects;
 
+/**
+ * Class for Reactor
+ */
+
 public class Reactor extends GameObject{
     private boolean isFixed;
-    private int phase;
 
-    public Reactor(String name, String id, String description, boolean isFixed, int phase) {
+    public Reactor(String name, String id, String description, boolean isFixed) {
         super(name, id, description);
         this.isFixed = isFixed;
-        this.phase = phase;
     }
+
+    /**
+     * Method for fixing of the Reactor
+     * @param player
+     * @return state of the Reactor if it is fixed or not and what you need to fix it.
+     */
 
     @Override
     public String execute(Player player) {
@@ -21,8 +29,14 @@ public class Reactor extends GameObject{
         if (!player.hasItem("reactor_card")){
             return "you need reactor card";
         }
-        if (!player.hasItem("marks_toolkit"))
-            return "you need toolkit to fix this";
+        if (!player.hasItem("calibrator")){
+            return "you need calibrator to fix this";
+
+        }
+        if (!player.hasItem("welding_machine")){
+            return "you need welding machine to fix this";
+
+        }
         isFixed = true;
         return "reactor is fixed";
     }
