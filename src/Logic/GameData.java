@@ -153,7 +153,7 @@ public class GameData {
                 gameObjects.add(controlPanel);
             }
             if(raw.type.equals("Reactor")) {
-                Reactor reactor = new Reactor(raw.name, raw.id, raw.description);
+                Reactor reactor = new Reactor(raw.name, raw.id, raw.description,raw.isFixed);
                 gameObjects.add(reactor);
             }
             if(raw.type.equals("EscapeModule")) {
@@ -217,5 +217,6 @@ class GameObjectRaw {
     public String name;
     public String description;
     public ArrayList<String> itemsRaw;
+    public boolean isFixed;
 }
 

@@ -11,7 +11,8 @@ public class GameObject {
         this.description = description;
     }
 
-    public GameObject() {
+    public String execute(Player player){
+        return "";
     }
 
     @Override

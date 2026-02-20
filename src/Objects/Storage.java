@@ -14,6 +14,11 @@ public class Storage extends GameObject{
         this.items = items;
     }
 
+    @Override
+    public String execute(Player player) {
+        return super.execute(player);
+    }
+
     /**
      * Method that gets Item from Storage
      * @param itemName name of the Item we wanna get

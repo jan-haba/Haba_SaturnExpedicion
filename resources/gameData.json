@@ -107,7 +107,8 @@
       "type": "Reactor",
       "id": "reactor",
       "name": "Reactor",
-      "description": "all power comes from here"
+      "description": "all power comes from here",
+      "isFixed": false
     },
     {
       "type": "ControlPanel",
