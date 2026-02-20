@@ -178,6 +178,43 @@ public class GameData {
             }
         }
     }
+    public void linkCharactersToRooms(){
+        for (Room r : rooms){
+            if (r.getCharactersRaw() != null){
+                for (String charID : r.getCharactersRaw()){
+                    Character found = findCharacterById(charID);
+                    if(found != null){
+                        r.addCharacter(found);
+                    }
+                }
+            }
+        }
+    }
+    private Character findCharacterById(String id){
+        for (Character character : characters) {
+            if (character.getId().equals(id)) {
+                return character;
+            }
+        }
+        return null;
+
+    }
+    public void linkItemsToCharacters(){
+        for (Character character : characters){
+            if (character.getItemsRaw()!= null){
+                for (String id : character.getItemsRaw()){
+                    Item found = findItemById(id);
+                    if (found != null){
+                        character.addItem(found);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
     private GameObject findObjectById(String id) {
         for (GameObject obj : gameObjects) {
             if (obj.getId().equals(id)) {
@@ -201,6 +238,10 @@ public class GameData {
             }
         }
 
+    }
+
+    public ArrayList<Character> getCharacters() {
+        return characters;
     }
 }
 class ItemRaw{

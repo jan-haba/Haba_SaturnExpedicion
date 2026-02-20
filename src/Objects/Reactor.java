@@ -14,17 +14,17 @@ public class Reactor extends GameObject{
 
     /**
      * Method for fixing of the Reactor
-     * @param player
+     * @param player gives method a way to interact with player
      * @return state of the Reactor if it is fixed or not and what you need to fix it.
      */
 
     @Override
     public String execute(Player player) {
         if (!player.hasItem("fire_extinguisher")){
-            return "zou need to get rid of the fire";
+            return "you need to get rid of the fire";
         }
         if (!player.isSuitEquiped()){
-            return "equip suit there is radation";
+            return "equip suit there is radiation";
         }
         if (!player.hasItem("reactor_card")){
             return "you need reactor card";

@@ -30,6 +30,13 @@ public class Room {
         }
         this.gameObjects.add(objects);
     }
+    public void addCharacter(Character character){
+        if(this.characters == null){
+            this.characters = new ArrayList<>();
+        }
+        this.characters.add(character);
+
+    }
 
     public ArrayList<String> getItemsRaw() {
         return itemsRaw;
@@ -126,9 +133,6 @@ public class Room {
         return null;
     }
 
-
-
-
     public String getName() {
         return name;
     }
@@ -147,5 +151,13 @@ public class Room {
 
     public ArrayList<GameObject> getGameObjects() {
         return gameObjects;
+    }
+
+    public ArrayList<String> getCharactersRaw() {
+        return charactersRaw;
+    }
+
+    public ArrayList<Character> getCharacters() {
+        return characters;
     }
 }

@@ -15,6 +15,8 @@ public class GameEngine {
         gameData.linkToolsToToolkits();
         gameData.linkItemsToRooms();
         gameData.linkObjectsToRooms();
+        gameData.linkItemsToCharacters();
+        gameData.linkCharactersToRooms();
         this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false);
         this.console = new Console(player,gameData);
 

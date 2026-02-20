@@ -47,4 +47,17 @@ public class Character {
     public String getName() {
         return name;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public ArrayList<String> getItemsRaw() {
+        return itemsRaw;
+    }
+    public void addItem(Item item){
+        if (item!= null){
+            items.add(item);
+        }
+    }
 }

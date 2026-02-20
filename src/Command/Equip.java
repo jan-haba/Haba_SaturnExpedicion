@@ -2,10 +2,10 @@ package Command;
 
 import Objects.Player;
 
-public class PutSuit implements Command {
+public class Equip implements Command {
     private Player player;
 
-    public PutSuit(Player player) {
+    public Equip(Player player) {
         this.player = player;
     }
 

@@ -1,7 +1,10 @@
 package Command;
 
-public interface Command {
+/**
+ * interface for commands
+ */
 
-     public String execute(String command);
+public interface Command {
+     String execute(String command);
      boolean exit();
 }
