@@ -1,5 +1,7 @@
 package Items;
 
+import Objects.Player;
+
 public class Item {
     private String name;
     private String type;
@@ -13,6 +15,15 @@ public class Item {
         this.id = id;
         this.description = description;
     }
+
+    public String execute(Player player, String string){
+        return "this item cant be used";
+    }
+    public String getDescription(){
+        return description;
+    }
+
+
 
     @Override
     public String toString() {

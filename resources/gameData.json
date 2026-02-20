@@ -7,7 +7,7 @@
       "description": "use Fire Extinguisher to extinguish fire"
     },
     {
-      "name": "Mark's Toolkit",
+      "name": "Toolkit",
       "type": "Toolkit",
       "id": "marks_toolkit",
       "description": "toolkit that Mark uses to repair stuff on spaceship",

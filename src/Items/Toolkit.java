@@ -1,5 +1,7 @@
 package Items;
 
+import Objects.Player;
+
 import java.util.ArrayList;
 
 public class Toolkit extends Item {
@@ -9,6 +11,39 @@ public class Toolkit extends Item {
     public Toolkit(String name, String type, String id, String description, ArrayList<String> toolsRaw) {
         super(name, type, id, description);
         this.toolsRaw = toolsRaw;
+    }
+
+    @Override
+    public String execute(Player player, String string) {
+        if (string == null || string.isEmpty()) {
+            return "You need to specify what you want to take from the toolkit.\n" + this.getDescription();
+        }
+        Item foundTool = null;
+        for (Item tool : this.tools) {
+            if (tool.getName().equalsIgnoreCase(string) || tool.getId().equalsIgnoreCase(string)) {
+                foundTool = tool;
+                break;
+            }
+        }
+        if (foundTool != null) {
+            player.addItem(foundTool);
+            this.tools.remove(foundTool);
+            return "You took the " + foundTool.getName() + " from the toolkit.";
+        }
+        return "There is no item named '" + string + "' in the toolkit.";
+    }
+    @Override
+    public String getDescription() {
+        StringBuilder sb = new StringBuilder(super.getDescription());
+        if (this.tools == null || this.tools.isEmpty()) {
+            sb.append("\nIt is currently empty.");
+        } else {
+            sb.append("\nInside you can see:");
+            for (Item tool : this.tools) {
+                sb.append("\n - ").append(tool.getName());
+            }
+        }
+        return sb.toString();
     }
 
     public void addItem(Item item) {

@@ -4,7 +4,6 @@ import Items.Item;
 import Items.Suit;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * class that handles player
@@ -28,6 +27,30 @@ public class Player {
                 return true;
             }
         }
+        return false;
+    }
+
+    public boolean hasItem(String itemID){
+        for (int i = 0; i < inventory.length; i++) {
+            if (this.inventory[i] != null) {
+                if (inventory[i].getId().equalsIgnoreCase(itemID)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean addItem(Item item){
+        if (item == null) return false;
+
+        for (int i = 0; i < this.inventory.length; i++) {
+            if (this.inventory[i] == null) {
+                this.inventory[i] = item;
+                return true;
+            }
+        }
+        System.out.println("Your inventory is full! You can't carry any more items.");
         return false;
     }
 
@@ -78,7 +101,6 @@ public class Player {
         return "item wasnt found in the inventory";
     }
     public void equipSuit(){};
-    public boolean hasItem(String itemName){return true;}
     public String use(Item item){return null;}
     public String doAction(){return null;}
 
@@ -90,6 +112,11 @@ public class Player {
                 ", currRoom=" + currRoom +
                 ", isSuitEquiped=" + isSuitEquiped +
                 '}';
+    }
+
+
+    public boolean isSuitEquiped() {
+        return isSuitEquiped;
     }
 
     public Room getCurrRoom() {
