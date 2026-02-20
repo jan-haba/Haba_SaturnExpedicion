@@ -11,17 +11,17 @@ public class Character {
     private String id;
     private ArrayList<String>itemsRaw;
     private ArrayList<Item>items;
-    private Room currRoom;
+    private String currRoomID;
     private HashMap<Integer, String>dialogues;
     private boolean isFollower;
 
-    public Character(String name, String description,String id, ArrayList<String> itemsRaw, Room currRoom, boolean isFollower) {
+    public Character(String name, String description,String id, ArrayList<String> itemsRaw, String currRoom, boolean isFollower) {
         this.name = name;
         this.description = description;
         this.id = id;
         this.itemsRaw = itemsRaw;
         this.items = new ArrayList<>();
-        this.currRoom = currRoom;
+        this.currRoomID = currRoom;
         this.dialogues = new HashMap<>();
         this.isFollower = isFollower;
     }
@@ -38,7 +38,7 @@ public class Character {
                 ", description='" + description + '\'' +
                 ", itemsRaw=" + itemsRaw +
                 ", items=" + items +
-                ", currRoom=" + currRoom +
+                ", currRoomID=" + currRoomID +
                 ", dialogues=" + dialogues +
                 ", isFollower=" + isFollower +
                 '}';
@@ -59,5 +59,9 @@ public class Character {
         if (item!= null){
             items.add(item);
         }
+    }
+
+    public void setCurrRoomID(String currRoomID) {
+        this.currRoomID = currRoomID;
     }
 }

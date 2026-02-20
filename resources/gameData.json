@@ -131,7 +131,7 @@
       "description": "Woman",
       "id": "lucy",
       "itemsRaw": [],
-      "currRoom": null,
+      "currRoomID": "reactor",
       "dialogues": {
         "1": "Stay here Lucy",
         "2": "Come with me Lucy"
@@ -143,10 +143,10 @@
       "description": "Woman",
       "id": "caroline",
       "itemsRaw": [],
-      "currRoom": null,
+      "currRoomID": "kitchen",
       "dialogues": {
-        "1": "dialog1",
-        "2": "Come with me Lucy"
+        "1": "Go to E.M. module and save yourself!!",
+        "2": "Leave her here"
       },
       "isFollower": false
     },
@@ -168,12 +168,12 @@
           "description": "card to reactor"
         }
       ],
-      "currRoom": null,
+      "currRoomID": "cockpit",
       "dialogues": {
-        "1": "dialog1",
-        "2": "dialog2",
-        "3": "dialog3",
-        "4": "dialog4"
+        "1": "Give me the reactor card Captain, if you dont the ship will fucking explode so hurry up!!",
+        "2": "Give me E.M. card Cap, the ship will be done in few minutes.",
+        "3": "Go to E.M. and save yourself Cap.",
+        "4": "Leave him here."
       },
       "isFollower": false
     }
