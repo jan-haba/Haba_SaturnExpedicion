@@ -50,8 +50,18 @@ public class Storage extends GameObject{
 
     @Override
     public String toString() {
+        return "Storage{" +
+                "items=" + items +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    @Override
+    public String getDescription() {
         StringBuilder sb = new StringBuilder();
-        sb.append("=== ").append(name.toUpperCase()).append(" ===\n");
+        sb.append("\n=== ").append(name.toUpperCase()).append(" ===\n");
         sb.append("Description: ").append(description).append("\n");
         sb.append("Content: ");
 

@@ -185,7 +185,7 @@
       "id": "electrical",
       "description": "There is a lot of electrical things",
       "itemsRaw": [],
-      "charactersRaw": ["lucy"],
+      "charactersRaw": [],
       "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": true,
@@ -273,7 +273,7 @@
       "id": "reactor",
       "description": "Reactor of the spaceship",
       "itemsRaw": ["fire_extinguisher"],
-      "charactersRaw": [],
+      "charactersRaw": ["lucy"],
       "gameObjectsRaw": ["reactor"],
       "exits":["Hall"],
       "isAccessible": true
