@@ -32,15 +32,15 @@ java -jar your_file_name.jar
 
 ## ⌨️Commands
 ```
->> go <roomName>        -> Movement command
->> help                 -> Shows all available commands
->> end                  -> Ends the game
->> drop <itemName>      -> Drops an item from your inventory
->> pick <itemName>      -> Picks up an item from the ground
->> equip <itemName>     -> Equips a suit or gear
->> examine <name>       -> Shows description of an item or object
->> inventory            -> Shows items in your inventory
->> interact <name>      -> Interaction with an object or character
+>> go <roomName>            -> Movement command
+>> help                     -> Shows all available commands
+>> end                      -> Ends the game
+>> drop <item>              -> Drops an item from your inventory
+>> pick <item>              -> Picks up an item from the ground
+>> equip <item>             -> Equips a suit or gear
+>> examine <item / object>  -> Shows description of an item or object
+>> inventory                -> Shows items in your inventory
+>> interact <item / object> -> Interaction with an object or character
 
 (More commands will be added soon)
 ```
