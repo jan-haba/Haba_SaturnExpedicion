@@ -4,7 +4,6 @@ import Items.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Character {
     private String name;
@@ -30,17 +29,6 @@ public class Character {
 
         return null;
     }
-
-
-
-
-
-
-
-    public void giveItem(Item item, Player player){}
-    public void moveRoom(){}
-    public String talk(int dialogueID){return null;}
-
     @Override
     public String toString() {
         return "Character{" +
@@ -70,7 +58,6 @@ public class Character {
             items.add(item);
         }
     }
-
     public void setCurrRoomID(String currRoomID) {
         this.currRoomID = currRoomID;
     }

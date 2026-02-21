@@ -29,16 +29,6 @@ public class Player {
         }
         return false;
     }
-    public boolean hasItemName(String itemName){
-        for (int i = 0; i < inventory.length; i++) {
-            if (this.inventory[i] != null) {
-                if (inventory[i].getName().equalsIgnoreCase(itemName)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     public boolean hasItem(String itemID){
         for (int i = 0; i < inventory.length; i++) {
@@ -60,19 +50,6 @@ public class Player {
         }
         return null;
 
-    }
-
-    public boolean addItem(Item item){
-        if (item == null) return false;
-
-        for (int i = 0; i < this.inventory.length; i++) {
-            if (this.inventory[i] == null) {
-                this.inventory[i] = item;
-                return true;
-            }
-        }
-        System.out.println("Your inventory is full! You can't carry any more items.");
-        return false;
     }
 
     public void removeItem(String itemName){
@@ -121,9 +98,6 @@ public class Player {
         }
         return "item wasnt found in the inventory";
     }
-    public void equipSuit(){};
-    public String use(Item item){return null;}
-    public String doAction(){return null;}
 
     @Override
     public String toString() {
@@ -134,7 +108,6 @@ public class Player {
                 ", isSuitEquiped=" + isSuitEquiped +
                 '}';
     }
-
 
     public boolean isSuitEquiped() {
         return isSuitEquiped;

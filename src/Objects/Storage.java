@@ -34,20 +34,6 @@ public class Storage extends GameObject{
         }
         return null;
     }
-
-    /**
-     * Method that helps put Items inside Storage Rack
-     * @param item Item we wanna put inside
-     * @return message that we put Item inside
-     */
-    public String putItem(Item item){
-        if (item == null){
-            return "Item doesnt exist";
-        }
-        this.items.add(item);
-        return item.getName() + " stored in " + getName();
-    }
-
     @Override
     public String toString() {
         return "Storage{" +
