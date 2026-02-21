@@ -160,4 +160,20 @@ public class Room {
     public ArrayList<Character> getCharacters() {
         return characters;
     }
+
+    public int getRequiredCode() {
+        return requiredCode;
+    }
+
+    public boolean isAccessible() {
+        return isAccessible;
+    }
+
+    public void setRequiredCode(int requiredCode) {
+        this.requiredCode = requiredCode;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

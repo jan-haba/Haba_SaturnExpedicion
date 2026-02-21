@@ -4,6 +4,7 @@ import Items.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Character {
     private String name;
@@ -25,10 +26,19 @@ public class Character {
         this.dialogues = new HashMap<>();
         this.isFollower = isFollower;
     }
+    public HashMap<Integer, String> getDialogue(){
+
+        return null;
+    }
+
+
+
+
+
+
 
     public void giveItem(Item item, Player player){}
     public void moveRoom(){}
-    public String getDialogue(Character character){return null;}
     public String talk(int dialogueID){return null;}
 
     @Override

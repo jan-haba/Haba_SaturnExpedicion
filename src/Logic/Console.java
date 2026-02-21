@@ -23,6 +23,7 @@ public class Console {
         commands.put("equip", new Equip(player));
         commands.put("interact",new Interact(player));
         commands.put("examine", new Examine(player));
+        commands.put("talk", new Talk(player));
     }
 
     public Console(Player player, GameData data) {
@@ -40,20 +41,24 @@ public class Console {
 
     private void execute(){
         System.out.print(">>");
-        String command = scanner.nextLine();
+        String command = scanner.nextLine().trim();
         if (command.isEmpty()){
+            return;
+        }
+        if ("DIALOG".equals(data.getGameState())) {
+            //handleDialogInput(input);
             return;
         }
         String[] parts = command.split("\\s+", 2);
         String commandName = parts[0].toLowerCase();
+        String argument = (parts.length > 1) ? parts[1] : "";
 
         if (commands.containsKey(commandName)){
-            String argument = (parts.length > 1) ? parts[1] : "";
-            System.out.println(">> " + commands.get(commandName).execute(argument));
+            System.out.println( commands.get(commandName).execute(argument));
             exit = commands.get(commandName).exit();
         }
         else{
-            System.out.println("command doesnt exists");
+            System.out.println("Command " + command +  " doesn't exist.");
         }
     }
     public void start(){

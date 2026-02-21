@@ -1,5 +1,9 @@
 package Objects;
 
+/**
+ * class for objects in the game
+ */
+
 public class GameObject {
     protected String name;
     protected String id;
@@ -10,6 +14,12 @@ public class GameObject {
         this.id = id;
         this.description = description;
     }
+
+    /**
+     * methode that lets player interact with the object
+     * @param player loads player so it can work with him
+     * @return nothing
+     */
 
     public String execute(Player player){
         return "";

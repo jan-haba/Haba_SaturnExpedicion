@@ -5,7 +5,7 @@ import Objects.*;
 import Objects.Character;
 import com.google.gson.Gson;
 
-import javax.tools.Tool;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -18,6 +18,9 @@ public class GameData {
     public ArrayList<GameObjectRaw>gameObjectRaws;
     public ArrayList<GameObject>gameObjects;
     public ArrayList<Character>characters;
+    public ArrayList <Integer>codes;
+    private String gameState = "EXPLORING";
+    private Character activeCharacter = null;
 
     public GameData() {
         this.rooms = new ArrayList<>();
@@ -26,6 +29,7 @@ public class GameData {
         this.characters = new ArrayList<>();
         this.gameObjects = new ArrayList<>();
         this.gameObjectRaws = new ArrayList<>();
+        this.codes = new ArrayList<>();
     }
 
     /**
@@ -80,8 +84,8 @@ public class GameData {
             Item item;
             switch (itemRaw.type){
                 case "Note":
-                    Note note = new Note(itemRaw.name, itemRaw.type,itemRaw.id,itemRaw.description,0);
-                    note.setCode();
+                    Note note = new Note(itemRaw.name, itemRaw.type,itemRaw.id,itemRaw.description,0,itemRaw.roomID );
+                    codes.add(note.setCode());
                     item = note;
                     break;
                 case "Suit":
@@ -239,9 +243,43 @@ public class GameData {
         }
 
     }
+    public void setCodesToRooms(){
+        for (Item item: items){
+            if (item instanceof Note){
+                Note note = (Note) item;
+                for (Room room : rooms){
+                    if (!room.isAccessible() && room.getRequiredCode() == 0){
+                        if (note.getRoomID().equalsIgnoreCase(room.getId())){
+                            room.setRequiredCode(note.getCode());
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     public ArrayList<Character> getCharacters() {
         return characters;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public Character getActiveCharacter() {
+        return activeCharacter;
+    }
+
+    public void setActiveCharacter(Character activeCharacter) {
+        this.activeCharacter = activeCharacter;
+    }
+
+    public String getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(String gameState) {
+        this.gameState = gameState;
     }
 }
 class ItemRaw{
@@ -250,6 +288,7 @@ class ItemRaw{
     String description;
     String type;
     ArrayList<String> toolsRaw;
+    String roomID;
 }
 
 class GameObjectRaw {

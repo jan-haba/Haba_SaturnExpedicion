@@ -40,7 +40,7 @@ public class Toolkit extends Item {
             if (item.getName().equalsIgnoreCase(name)) {
                 Item tool = item;
                 tools.remove(item);
-                return item;
+                return tool;
             }
         }
         return null;

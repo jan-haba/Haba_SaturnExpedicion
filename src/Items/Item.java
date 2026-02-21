@@ -23,8 +23,6 @@ public class Item {
         return description;
     }
 
-
-
     @Override
     public String toString() {
         return String.format("[%s] - %s (ID: %s)",

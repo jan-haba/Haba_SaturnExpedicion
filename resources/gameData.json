@@ -42,14 +42,17 @@
       "type": "Note",
       "id": "note_1",
       "description": "code to room",
-      "code": 0
+      "code": 0,
+      "roomID": "captain_caroline_room"
+
     },
     {
       "name": "Note",
       "type": "Note",
       "id": "note_2",
       "description": "code to panel",
-      "code": 0
+      "code": 0,
+      "roomID": "electrical"
     },
     {
       "name": "Reactor Card",
@@ -188,7 +191,7 @@
       "charactersRaw": [],
       "objectsRaw": [],
       "exits":["Hall"],
-      "isAccessible": true,
+      "isAccessible": false,
       "requiredCode": 0
     },
     {
@@ -222,7 +225,8 @@
       "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": false,
-      "requiredCode": 0
+      "requiredCode": -1
+
     },
     {
       "name": "Engine 2",
@@ -255,7 +259,8 @@
       "objectsRaw": [],
       "exits":["Hall"],
       "isAccessible": false,
-      "requiredCode": 0
+      "requiredCode": -1
+
     },
     {
       "name": "Escape Module 2",
@@ -276,7 +281,9 @@
       "charactersRaw": ["lucy"],
       "gameObjectsRaw": ["reactor"],
       "exits":["Hall"],
-      "isAccessible": true
+      "isAccessible": true,
+      "requiredCode": 0
+
     },
     {
       "name": "Storage",

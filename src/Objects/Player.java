@@ -107,10 +107,10 @@ public class Player {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null){
                 inventory[i] = item;
-                return "item was picked up";
+                return "Item " + item.getName() + " picked up";
             }
         }
-        return "inventory is full";
+        return "Inventory is full";
     }
     public String dropDown(Item item) {
         for (int i = 0; i < inventory.length; i++) {

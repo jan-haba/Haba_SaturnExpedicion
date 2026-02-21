@@ -2,6 +2,9 @@ package Command;
 
 import Logic.GameData;
 import Objects.Player;
+import Objects.Room;
+
+import java.util.Scanner;
 
 /**
  * class = command for movement
@@ -34,17 +37,15 @@ public class GoTo implements Command {
      */
     public String move(String roomName){
         String actualExit = null;
+        Scanner scanner = new Scanner(System.in);
         for (String exit : player.getCurrRoom().getExits()) {
             if (exit.equalsIgnoreCase(roomName)) {
                 actualExit = exit;
                 break;
             }
         }
-
-        // 2. Pokud jsme našli shodu
         if (actualExit != null) {
             player.setCurrRoom(data.locateRoom(actualExit));
-            // Bonus: Vrátíme popis nové místnosti pomocí tvého hezkého toString()
             return player.getCurrRoom().getRoom() + "\nPlayer has moved to " + actualExit;
         } else {
             return "Room wasn't found or it doesn't connect to that room.";
