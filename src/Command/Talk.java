@@ -1,5 +1,6 @@
 package Command;
 
+import Logic.GameData;
 import Objects.Character;
 import Objects.Player;
 
@@ -9,21 +10,25 @@ import Objects.Player;
 
 public class Talk implements Command{
     private Player player;
+    private GameData gameData;
 
-    public Talk(Player player) {
+    public Talk(Player player, GameData gameData) {
         this.player = player;
+        this.gameData = gameData;
     }
 
     @Override
     public String execute(String command) {
-        if (player.getCurrRoom().getCharacters() != null){
-            for (Character character : player.getCurrRoom().getCharacters()){
-                if (character.getName().equalsIgnoreCase(command)){
-                    return String.valueOf(character.getDialogue());
+        if (player.getCurrRoom().getCharacters() != null) {
+            for (Character character : player.getCurrRoom().getCharacters()) {
+                if (character.getName().equalsIgnoreCase(command)) {
+                    gameData.setGameState("DIALOG");
+                    gameData.setActiveCharacter(character);
+                    return character.printDialogues();
                 }
             }
         }
-        return "Room does not have anybody in it.";
+        return "Character doesnt exist.";
     }
 
     @Override

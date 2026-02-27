@@ -281,6 +281,7 @@ public class GameData {
     public void setGameState(String gameState) {
         this.gameState = gameState;
     }
+
 }
 class ItemRaw{
     String id;

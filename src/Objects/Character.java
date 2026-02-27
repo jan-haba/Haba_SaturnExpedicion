@@ -26,9 +26,37 @@ public class Character {
         this.isFollower = isFollower;
     }
     public HashMap<Integer, String> getDialogue(){
+        return dialogues;
+    }
 
+    public String printDialogues() {
+        if (dialogues == null || dialogues.isEmpty()) {
+            return name + " has nothing to say.";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("--- Dialogue with ").append(name).append(" ---\n");
+        for (Integer key : dialogues.keySet()) {
+            sb.append(" [").append(key).append("] ").append(dialogues.get(key)).append("\n");
+        }
+        sb.append(" [0] Exit dialogue\n");
+        sb.append("Choose answer by typing number:");
+        return sb.toString();
+    }
+    public void setFollower(boolean follower) {
+        this.isFollower = follower;
+    }
+
+    public Item giveItem(String itemID) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equalsIgnoreCase(itemID)) {
+                Item item = items.get(i);
+                items.remove(i);
+                return item;
+            }
+        }
         return null;
     }
+
     @Override
     public String toString() {
         return "Character{" +

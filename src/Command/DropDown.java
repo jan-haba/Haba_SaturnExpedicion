@@ -4,6 +4,10 @@ import Items.Item;
 import Objects.Player;
 import Objects.Room;
 
+/**
+ * class for drop command
+ */
+
 public class DropDown implements Command{
     private Player player;
     private Room room;
@@ -12,6 +16,11 @@ public class DropDown implements Command{
         this.player = player;
     }
 
+    /**
+     * method that executes DROP
+     * @param command name of the item we wanna drop
+     * @return message if the item was dropped or not
+     */
     @Override
     public String execute(String command) {
         room = player.getCurrRoom();
@@ -30,6 +39,11 @@ public class DropDown implements Command{
             return "Item wasnt found";
         }
     }
+
+    /**
+     * just exit
+     * @return
+     */
 
     @Override
     public boolean exit() {

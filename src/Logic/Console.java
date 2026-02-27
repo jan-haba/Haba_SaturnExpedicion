@@ -2,6 +2,7 @@ package Logic;
 
 import Command.*;
 import Objects.Player;
+import Objects.Character;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -23,7 +24,7 @@ public class Console {
         commands.put("equip", new Equip(player));
         commands.put("interact",new Interact(player));
         commands.put("examine", new Examine(player));
-        commands.put("talk", new Talk(player));
+        commands.put("talk", new Talk(player, data));
     }
 
     public Console(Player player, GameData data) {
@@ -46,8 +47,9 @@ public class Console {
             return;
         }
         if ("DIALOG".equals(data.getGameState())) {
-            //handleDialogInput(input);
+            handleDialogInput(command);
             return;
+
         }
         String[] parts = command.split("\\s+", 2);
         String commandName = parts[0].toLowerCase();
@@ -71,9 +73,85 @@ public class Console {
     public HashMap<String, Command> getCommands() {
         return commands;
     }
+
     public String getKeySet(){
         putCommands();
         return commands.keySet().toString();
     }
 
+    /**
+     * method that handles dialogues and their different outcomes
+     * @param input name of the character
+     */
+    private void handleDialogInput(String input) {
+        try {
+            int choice = Integer.parseInt(input);
+            Character npc = data.getActiveCharacter();
+
+            if (choice == 0) {
+                System.out.println("You have exited the dialogue.");
+                data.setGameState("EXPLORING");
+                data.setActiveCharacter(null);
+                return;
+            }
+
+            if (npc.getDialogue().containsKey(choice)) {
+                System.out.println("You have said: " + npc.getDialogue().get(choice));
+                switch (npc.getName().toLowerCase()) {
+                    case "lucy":
+                        if (choice == 1) {
+                            npc.setFollower(false);
+                            System.out.println("Lucy: 'Alright, I'll wait for you here.'");
+                        } else if (choice == 2) {
+                            npc.setFollower(true);
+                            System.out.println("Lucy: 'Okay, I'll come with you. Don't leave me alone.'");
+                            player.getCurrRoom().getCharacters().clear();
+                        }
+                        break;
+
+                    case "captain":
+                        if (choice == 1) {
+                            Items.Item card = npc.giveItem("reactor_card");
+                            if (card != null) {
+                                player.pickUp(card);
+                                System.out.println("Captain: 'Here is the card. And don't you dare mess this up!'");
+                                System.out.println("(Reactor Card was added to your inventory)");
+                            } else {
+                                System.out.println("Captain: 'I already gave it to you, idiot!'");
+                            }
+                        } else if (choice == 2) {
+                            Items.Item card = npc.giveItem("e_m_card_2");
+                            if (card != null) {
+                                player.pickUp(card);
+                                System.out.println("Captain: 'You are making a big mistake, Hayers. Here it is.'");
+                                System.out.println("(E.M. Card 2 was added to your inventory)");
+                            } else {
+                                System.out.println("Captain: 'I don't have it anymore!'");
+                            }
+                        } else if (choice == 3) {
+                            System.out.println("Captain: 'Finally a reasonable idea. See ya, Hayers!'");
+                            // TODO: Captain runs away logic
+                        } else if (choice == 4) {
+                            System.out.println("You left the Captain alone.");
+                        }
+                        break;
+
+                    case "caroline":
+                        if (choice == 1) {
+                            System.out.println("Caroline: 'Fine! I wasn't talking to you anyway.'");
+                            // TODO: Caroline runs away logic
+                        } else if (choice == 2) {
+                            System.out.println("You left Caroline alone.");
+                        }
+                        break;
+                }
+                data.setGameState("EXPLORING");
+                data.setActiveCharacter(null);
+            } else {
+                System.out.println("Wrong number");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Wrong input write number");
+        }
+    }
 }
