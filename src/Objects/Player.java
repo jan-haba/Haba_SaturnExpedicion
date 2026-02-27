@@ -55,7 +55,7 @@ public class Player {
     public void removeItem(String itemName){
         for (int i = 0; i < inventory.length; i++) {
             if (this.inventory[i] != null) {
-                if (inventory[i].getName().equals(itemName)) {
+                if (inventory[i].getName().equalsIgnoreCase(itemName)) {
                     inventory[i] = null;
                 }
             }

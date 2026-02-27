@@ -120,14 +120,9 @@ public class Console {
                                 System.out.println("Captain: 'I already gave it to you, idiot!'");
                             }
                         } else if (choice == 2) {
-                            Items.Item card = npc.giveItem("e_m_card_2");
-                            if (card != null) {
-                                player.pickUp(card);
-                                System.out.println("Captain: 'You are making a big mistake, Hayers. Here it is.'");
-                                System.out.println("(E.M. Card 2 was added to your inventory)");
-                            } else {
-                                System.out.println("Captain: 'I don't have it anymore!'");
-                            }
+                            System.out.println("I'm not giving you anything until you warn Caroline. Go tell her, then we'll talk.");
+                            //TODO: CAPTAIN runs to EM
+
                         } else if (choice == 3) {
                             System.out.println("Captain: 'Finally a reasonable idea. See ya, Hayers!'");
                             // TODO: Captain runs away logic

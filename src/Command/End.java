@@ -1,15 +1,14 @@
 package Command;
 
 /**
- * command for ending the game
+ * Command for ending the game.
  */
-
 public class End implements Command{
 
     /**
-     * execute method
-     * @param command
-     * @return
+     * Executes the end command.
+     * @param command any additional arguments (ignored for this command)
+     * @return a message notifying the player about exiting the game
      */
     @Override
     public String execute(String command) {
@@ -17,8 +16,8 @@ public class End implements Command{
     }
 
     /**
-     * we set exit true so that we can exit the game
-     * @return
+     * Signals the console loop to terminate.
+     * @return true to indicate the game should exit
      */
     @Override
     public boolean exit() {

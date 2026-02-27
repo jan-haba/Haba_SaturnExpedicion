@@ -158,19 +158,7 @@
       "description": "Captain",
       "id": "captain",
       "itemsRaw": ["reactor_card", "e_m_card_2"],
-      "items": [
-        {
-          "name": "E.M.Card 2",
-          "type": "Card",
-          "id": "e_m_card_2",
-          "description": "card to E.M.2"
-        }, {
-          "name": "Reactor Card",
-          "type": "Card",
-          "id": "reactor_card",
-          "description": "card to reactor"
-        }
-      ],
+      "items": [],
       "currRoomID": "cockpit",
       "dialogues": {
         "1": "Give me the reactor card Captain, if you dont the ship will fucking explode so hurry up!!",
