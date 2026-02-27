@@ -117,7 +117,8 @@
       "type": "ControlPanel",
       "id": "control_panel",
       "name": "Control Panel",
-      "description": "control something idk"
+      "description": "control something idk",
+      "isActivated": false
     },
     {
       "type": "EscapeModule",
@@ -177,7 +178,7 @@
       "description": "There is a lot of electrical things",
       "itemsRaw": [],
       "charactersRaw": [],
-      "objectsRaw": [],
+      "gameObjectsRaw": ["control_panel"],
       "exits":["Hall"],
       "isAccessible": false,
       "requiredCode": 0
@@ -256,7 +257,7 @@
       "description": "Espace module womp womp",
       "itemsRaw": [],
       "charactersRaw": [],
-      "objectsRaw": [],
+      "gameObjectsRaw": ["escape_module"],
       "exits":["Hall"],
       "isAccessible": true,
       "requiredCode": 0

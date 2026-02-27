@@ -153,7 +153,7 @@ public class GameData {
                 gameObjects.add(storage);
             }
             if(raw.type.equals("ControlPanel")) {
-                ControlPanel controlPanel = new ControlPanel(raw.name, raw.id, raw.description);
+                ControlPanel controlPanel = new ControlPanel(raw.name, raw.id, raw.description, raw.isActivated);
                 gameObjects.add(controlPanel);
             }
             if(raw.type.equals("Reactor")) {
@@ -163,6 +163,7 @@ public class GameData {
             if(raw.type.equals("EscapeModule")) {
                 EscapeModule module = new EscapeModule(raw.name, raw.id, raw.description);
                 gameObjects.add(module);
+                module.setControlPanel((ControlPanel) findObjectById("control_panel"));
             }
         }
     }
@@ -298,6 +299,7 @@ class GameObjectRaw {
     public String name;
     public String description;
     public ArrayList<String> itemsRaw;
+    public boolean isActivated;
     public boolean isFixed;
 }
 

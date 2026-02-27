@@ -1,17 +1,17 @@
 package Objects;
 
 import java.util.ArrayList;
-
 import Items.Item;
+
 
 public class Room {
     private String name;
     private String id;
     private String description;
     private ArrayList<String>itemsRaw;
-    private ArrayList<Item>items = new ArrayList<>();
+    private ArrayList<Item>items;
     private ArrayList<String>charactersRaw;
-    private ArrayList<Character>characters = new ArrayList<>();
+    private ArrayList<Character>characters;
     private ArrayList<String>gameObjectsRaw;
     private ArrayList<GameObject>gameObjects = new ArrayList<>();
     private ArrayList<String>exits;
