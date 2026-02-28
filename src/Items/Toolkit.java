@@ -4,6 +4,10 @@ import Objects.Player;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a toolkit or container item that can hold other items (tools).
+ * Players can examine the toolkit to see its contents and extract items from it.
+ */
 public class Toolkit extends Item {
     private ArrayList<Item>tools =  new ArrayList<>();
     private ArrayList<String>toolsRaw;
@@ -13,6 +17,12 @@ public class Toolkit extends Item {
         this.toolsRaw = toolsRaw;
     }
 
+    /**
+     * Executes an interaction with the toolkit, which attempts to extract a specific tool from it.
+     * @param player the player interacting with the toolkit
+     * @param string the name of the tool the player wants to extract
+     * @return the extracted Item, or null if it wasn't found inside
+     */
     @Override
     public Item execute(Player player, String string) {
         return getItem(string);
@@ -31,10 +41,20 @@ public class Toolkit extends Item {
         return sb.toString();
     }
 
+    /**
+     * Adds an item (tool) into the toolkit.
+     * @param item the item to be added
+     */
     public void addItem(Item item) {
         tools.add(item);
     }
 
+    /**
+     * Searches for a tool by name inside the toolkit. If found, removes it from
+     * the toolkit and returns it.
+     * @param name the name of the tool to retrieve
+     * @return the requested tool, or null if it's not inside
+     */
     public Item getItem(String name) {
         for (Item item : tools) {
             if (item.getName().equalsIgnoreCase(name)) {
@@ -55,4 +75,3 @@ public class Toolkit extends Item {
         return super.toString() + " | Tools: " + this.tools;
     }
 }
-

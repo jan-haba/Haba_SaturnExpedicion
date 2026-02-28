@@ -2,6 +2,10 @@ package Items;
 
 import java.util.Random;
 
+/**
+ * Represents a note item containing a generated access code.
+ * Notes are typically used by the player to find codes needed to unlock specific doors or systems.
+ */
 public class Note extends Item {
     private int code;
     private String roomID;
@@ -12,13 +16,13 @@ public class Note extends Item {
         this.roomID = roomID;
     }
 
+    /**
+     * Generates a random 4-digit code (from 1000 to 9999) and assigns it to this note.
+     * @return the newly generated code
+     */
     public int setCode() {
         Random random = new Random();
-        this.code = random.nextInt(1000,9999);
-        return code;
-    }
-
-    public int getCode() {
+        this.code = random.nextInt(1000,10000);
         return code;
     }
 
@@ -32,5 +36,9 @@ public class Note extends Item {
 
     public String getRoomID() {
         return roomID;
+    }
+
+    public int getCode() {
+        return code;
     }
 }
