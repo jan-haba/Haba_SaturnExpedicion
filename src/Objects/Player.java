@@ -13,12 +13,18 @@ public class Player {
     private String name;
     private Room currRoom;
     private boolean isSuitEquiped;
+    private int winState;
+    private int timeRemaining;
+    private int loopCount;
 
-    public Player(String name, Room currRoom, boolean isSuitEquiped) {
+    public Player(String name, Room currRoom, boolean isSuitEquiped, int winState, int timeRemaining, int loopCount) {
         this.inventory = new Item[4];
         this.name = name;
         this.currRoom = currRoom;
         this.isSuitEquiped = isSuitEquiped;
+        this.winState = 0;
+        this.loopCount = loopCount;
+        this.timeRemaining = timeRemaining;
     }
 
     public boolean hasSuit(){
@@ -99,6 +105,12 @@ public class Player {
         return "item wasnt found in the inventory";
     }
 
+    public int getTimeRemaining() { return timeRemaining; }
+    public void setTimeRemaining(int timeRemaining) { this.timeRemaining = timeRemaining; }
+
+    public int getLoopCount() { return loopCount; }
+    public void incrementLoop() { this.loopCount++; }
+
     @Override
     public String toString() {
         return "Player{" +
@@ -127,6 +139,26 @@ public class Player {
 
     public void setSuitEquiped(boolean suitEquiped) {
         isSuitEquiped = suitEquiped;
+    }
+
+    public void setInventory(Item[] inventory) {
+        this.inventory = inventory;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWinState() {
+        return winState;
+    }
+
+    public void setWinState(int winState) {
+        this.winState = winState;
     }
 }
 

@@ -38,6 +38,7 @@ public class Reactor extends GameObject{
 
         }
         isFixed = true;
+        player.setWinState(1);
         return "reactor is fixed";
     }
 

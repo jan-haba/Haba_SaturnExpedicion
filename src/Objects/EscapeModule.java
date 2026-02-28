@@ -26,12 +26,9 @@ public class EscapeModule extends GameObject {
             return "The module is ready, but the door is locked. You need E.M. Card 2 to open it.";
         }
 
-        return "=======================================================================\n" +
-                "SUCCESS! You swiped the E.M. Card 2, loaded the Emergency kit,\n" +
-                "and fueled the module. The engine ignites with a massive roar,\n" +
-                "and you shoot out into space, leaving the doomed ship behind.\n\n" +
-                "*** YOU SURVIVED! (GOOD ENDING) ***\n" +
-                "=======================================================================";
+        player.setWinState(2);
+
+        return "escape module fixed";
     }
 
     @Override

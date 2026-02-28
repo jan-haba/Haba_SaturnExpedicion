@@ -25,6 +25,7 @@ public class Console {
         commands.put("interact",new Interact(player));
         commands.put("examine", new Examine(player));
         commands.put("talk", new Talk(player, data));
+        commands.put("time", new Time(player));
     }
 
     public Console(Player player, GameData data) {
@@ -43,6 +44,10 @@ public class Console {
     private void execute(){
         System.out.print(">>");
         String command = scanner.nextLine().trim();
+        if (player.getWinState() == -1) {
+            this.exit = true;
+            return;
+        }
         if (command.isEmpty()){
             return;
         }
@@ -67,11 +72,41 @@ public class Console {
         putCommands();
         do {
             execute();
+            checkWinConditions();
         }while (!exit);
     }
 
-    public HashMap<String, Command> getCommands() {
-        return commands;
+    public void setGameData(GameData data) {
+        this.data = data;
+        putCommands();
+    }
+
+    public void setExit(boolean exit) {
+        this.exit = exit;
+    }
+    private void checkWinConditions() {
+        int state = player.getWinState();
+
+        if (state == 1) {
+            System.out.println("\n=======================================================================");
+            System.out.println("                         HERO ENDING ACHIEVED                          ");
+            System.out.println("=======================================================================");
+            System.out.println("The alarm stops ringing. The ship's systems return to normal.");
+            System.out.println("You wiped the sweat from your forehead. You just saved the entire crew!");
+            System.out.println("Mission will continue and everyone will celebrate.");
+            System.out.println("=======================================================================\n");
+            this.exit = true;
+        }
+        else if (state == 2) {
+            System.out.println("\n=======================================================================");
+            System.out.println("                       SURVIVOR ENDING ACHIEVED                        ");
+            System.out.println("=======================================================================");
+            System.out.println("The engine ignites with a massive roar, and you shoot out into space,");
+            System.out.println("leaving the doomed ship Mi Bomdo TX670 behind.");
+            System.out.println("You survived... but was it the right choice?");
+            System.out.println("=======================================================================\n");
+            this.exit = true;
+        }
     }
 
     public String getKeySet(){
