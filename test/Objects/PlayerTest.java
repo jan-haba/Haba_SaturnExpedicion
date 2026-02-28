@@ -11,7 +11,7 @@ class PlayerTest {
 
     @BeforeEach
     void setUp() {
-        player = new Player("Marcus", null,true);
+        player = new Player("Marcus", null,true,0,0,1);
     }
     @Test
     void hasSuit() {

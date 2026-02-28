@@ -18,7 +18,7 @@ class GoToTest {
 
     @BeforeEach
     void setUp() {
-        player = new Player("Marcus", null, true);
+        player = new Player("Marcus", null, true,0,0,1);
         room1 = new Room("A", "a", "a", true, 0);
         room2 = new Room("B", "b", "b", true, 0);
 

@@ -1,40 +1,37 @@
-package Command;
+package Objects;
 
-import Items.Item;
 import Logic.GameData;
-import Objects.Player;
-import Objects.Room;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PickUpTest {
+class ControlPanelTest {
     Player player;
+    ControlPanel controlPanel;
     Room room;
-    Item item;
     GameData gameData;
-    PickUp pickUp;
 
     @BeforeEach
     void setUp() {
         player = new Player("Marcus", null, true,0,0,1);
         room = new Room("A", "a", "a", true, 0);
-        item = new Item("Item","Item","item","item of the item the itemest item of the all");
-
+        controlPanel = new ControlPanel("panel","panel","panel",false);
         gameData = new GameData();
 
-        room.addItem(item);
+
+        room.addObject(controlPanel);
         gameData.getRooms().add(room);
         player.setCurrRoom(room);
 
-        pickUp = new PickUp(player);
     }
 
     @Test
     void execute() {
-        pickUp.execute("item");
-        assertTrue(player.hasItem("item"));
-        assertFalse(room.getItems().contains(item));
+        assertFalse(controlPanel.isActivated());
+        assertEquals("You flipped the heavy switches. The Control Panel hums to life.\n" +
+                "*** Power has been restored to Escape Module 2! ***", controlPanel.execute(player));
+        assertTrue(controlPanel.isActivated());
+
     }
 }

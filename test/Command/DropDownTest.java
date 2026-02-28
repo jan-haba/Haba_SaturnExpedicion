@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PickUpTest {
+class DropDownTest {
     Player player;
-    Room room;
     Item item;
+    Room room;
+    DropDown dropDown;
     GameData gameData;
-    PickUp pickUp;
 
     @BeforeEach
     void setUp() {
@@ -24,17 +24,17 @@ class PickUpTest {
 
         gameData = new GameData();
 
-        room.addItem(item);
         gameData.getRooms().add(room);
         player.setCurrRoom(room);
+        player.pickUp(item);
 
-        pickUp = new PickUp(player);
+        dropDown = new DropDown(player);
     }
 
     @Test
     void execute() {
-        pickUp.execute("item");
-        assertTrue(player.hasItem("item"));
-        assertFalse(room.getItems().contains(item));
+        dropDown.execute("item");
+        assertTrue(player.getCurrRoom().getItems().contains(item));
+        assertFalse(player.hasItem("item"));
     }
 }
