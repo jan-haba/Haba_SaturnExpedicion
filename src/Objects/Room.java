@@ -3,7 +3,10 @@ package Objects;
 import java.util.ArrayList;
 import Items.Item;
 
-
+/**
+ * Represents a location (room) within the spaceship.
+ * Contains items, interactive game objects, characters, and connections (exits) to other rooms.
+ */
 public class Room {
     private String name;
     private String id;
@@ -18,18 +21,33 @@ public class Room {
     private boolean isAccessible;
     private int requiredCode;
 
+    /**
+     * Adds an item to the room's floor.
+     * Safely initializes the list if it was left null by the JSON parser.
+     * @param item the item to drop in the room
+     */
     public void addItem(Item item){
         if (this.items == null) {
             this.items = new ArrayList<>();
         }
         this.items.add(item);
     }
+
+    /**
+     * Adds an interactive game object to the room.
+     * @param objects the game object to place in the room
+     */
     public void addObject(GameObject objects){
         if (this.gameObjects == null){
             this.gameObjects = new ArrayList<>();
         }
         this.gameObjects.add(objects);
     }
+
+    /**
+     * Adds an NPC character to the room.
+     * @param character the character to place in the room
+     */
     public void addCharacter(Character character){
         if(this.characters == null){
             this.characters = new ArrayList<>();
@@ -38,10 +56,11 @@ public class Room {
 
     }
 
-    public ArrayList<String> getItemsRaw() {
-        return itemsRaw;
-    }
-
+    /**
+     * Generates a beautifully formatted terminal-style interface displaying the room's details,
+     * including its description, visible items, objects, characters, and available exits.
+     * @return the formatted room description string
+     */
     public Room(String name, String id, String description, boolean isAccessible, int requiredCode) {
         this.name = name;
         this.id = id;
@@ -72,6 +91,12 @@ public class Room {
                 ", requiredCode=" + requiredCode +
                 '}';
     }
+
+    /**
+     * Generates a beautifully formatted terminal-style interface displaying the room's details,
+     * including its description, visible items, objects, characters, and available exits.
+     * @return the formatted room description string
+     */
     public String getRoom() {
         StringBuilder sb = new StringBuilder();
 
@@ -115,6 +140,12 @@ public class Room {
         return sb.toString();
     }
 
+    /**
+     * Searches the room for a specific object or item by its name.
+     * Checks loose items first, then interactive game objects.
+     * @param objectName the name of the object to find
+     * @return the Object found (either Item or GameObject), or null if missing
+     */
     public Object findObject(String objectName){
         if (items != null) {
             for (Item item : items) {
@@ -175,5 +206,13 @@ public class Room {
 
     public String getId() {
         return id;
+    }
+
+    public ArrayList<String> getItemsRaw() {
+        return itemsRaw;
+    }
+
+    public void setAccessible(boolean accessible) {
+        isAccessible = accessible;
     }
 }

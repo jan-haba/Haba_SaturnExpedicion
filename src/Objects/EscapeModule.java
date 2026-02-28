@@ -1,5 +1,10 @@
 package Objects;
 
+/**
+ * Represents the ship's Escape Module.
+ * This is a critical game object that allows the player to achieve the "Survivor Ending".
+ * To use it, the player must meet a series of strict requirements (power, fuel, kit, and keycard).
+ */
 public class EscapeModule extends GameObject {
     private ControlPanel controlPanel;
 
@@ -7,6 +12,13 @@ public class EscapeModule extends GameObject {
         super(name, id, description);
     }
 
+    /**
+     * Executes the interaction logic for attempting to launch the escape module.
+     * Checks all necessary conditions sequentially. If all are met, sets the player's
+     * win state to 2 (Survivor Ending).
+     * @param player the player attempting to use the module
+     * @return a message describing what is missing, or a success message if launching
+     */
     @Override
     public String execute(Player player) {
 

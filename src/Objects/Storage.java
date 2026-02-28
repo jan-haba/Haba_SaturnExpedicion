@@ -44,6 +44,10 @@ public class Storage extends GameObject{
                 '}';
     }
 
+    /**
+     * Writes the content of the storage rack
+     * @return content of the storage rack
+     */
     @Override
     public String getDescription() {
         StringBuilder sb = new StringBuilder();

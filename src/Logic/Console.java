@@ -7,6 +7,11 @@ import Objects.Character;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * The main input parser and game loop controller.
+ * Handles reading user input, executing corresponding commands, managing the dialogue system,
+ * and checking for game-ending conditions (win/loss).
+ */
 public class Console {
     private Scanner scanner;
     private HashMap<String, Command>commands;
@@ -14,6 +19,9 @@ public class Console {
     private Player player;
     private GameData data;
 
+    /**
+     * Registers all available commands in the game and maps them to their trigger words.
+     */
     private void putCommands(){
         commands.put("go",new GoTo(this.player,this.data));
         commands.put("help", new Help(data));
@@ -43,6 +51,10 @@ public class Console {
         this.exit = false;
     }
 
+    /**
+     * Reads the player's input from the console, parses it, and executes the corresponding logic.
+     * It also handles the split between normal exploration commands and numeric dialogue choices.
+     */
     private void execute(){
         System.out.print(">>");
         String command = scanner.nextLine().trim();
@@ -70,6 +82,11 @@ public class Console {
             System.out.println("Command " + command +  " doesn't exist.");
         }
     }
+
+    /**
+     * Starts the main interactive loop of the console.
+     * Continuously prompts for input and checks for win conditions until the exit flag is set.
+     */
     public void start(){
         putCommands();
         do {
@@ -78,14 +95,20 @@ public class Console {
         }while (!exit);
     }
 
+    /**
+     * Updates the game data reference and re-registers commands to ensure they use the new data.
+     * Used mainly after a time loop reset.
+     * @param data the new GameData instance
+     */
     public void setGameData(GameData data) {
         this.data = data;
         putCommands();
     }
 
-    public void setExit(boolean exit) {
-        this.exit = exit;
-    }
+    /**
+     * Checks if the player has triggered a win scenario (fixing the reactor or escaping).
+     * If true, prints the respective ending text and flags the console to exit.
+     */
     private void checkWinConditions() {
         int state = player.getWinState();
 
@@ -111,14 +134,10 @@ public class Console {
         }
     }
 
-    public String getKeySet(){
-        putCommands();
-        return commands.keySet().toString();
-    }
-
     /**
-     * method that handles dialogues and their different outcomes
-     * @param input name of the character
+     * Processes numeric input during an active dialogue with an NPC.
+     * Manages item giving, follower toggling, and changing the game state back to exploration.
+     * @param input the numeric choice inputted by the player
      */
     private void handleDialogInput(String input) {
         try {
@@ -185,5 +204,8 @@ public class Console {
         } catch (NumberFormatException e) {
             System.out.println("Wrong input write number");
         }
+    }
+    public void setExit(boolean exit) {
+        this.exit = exit;
     }
 }

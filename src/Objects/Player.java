@@ -6,7 +6,9 @@ import Items.Suit;
 import java.util.Arrays;
 
 /**
- * class that handles player
+ * Represents the main character of the game.
+ * Manages the player's inventory, current location, win/loss state,
+ * time loop mechanics, and equipment status.
  */
 public class Player {
     private Item[] inventory;
@@ -27,6 +29,10 @@ public class Player {
         this.timeRemaining = timeRemaining;
     }
 
+    /**
+     * Checks if the player has any Suit item in their inventory.
+     * @return true if a suit is found, false otherwise
+     */
     public boolean hasSuit(){
         for (Item item : inventory) {
             if (item instanceof Suit) {
@@ -36,6 +42,11 @@ public class Player {
         return false;
     }
 
+    /**
+     * Checks if the player's inventory contains an item with a specific ID.
+     * @param itemID the unique ID of the item to look for
+     * @return true if the item is in the inventory, false otherwise
+     */
     public boolean hasItem(String itemID){
         for (int i = 0; i < inventory.length; i++) {
             if (this.inventory[i] != null) {
@@ -46,6 +57,12 @@ public class Player {
         }
         return false;
     }
+
+    /**
+     * Searches the inventory for an item by its exact name.
+     * @param itemName the display name of the item
+     * @return the Item object if found, or null if it's not in the inventory
+     */
     public Item getItem(String itemName){
         for (int i = 0; i < inventory.length; i++) {
             if (this.inventory[i] != null) {
@@ -58,19 +75,26 @@ public class Player {
 
     }
 
+    /**
+     * Removes an item from the player's inventory by its name.
+     * Only removes the first instance found.
+     * @param itemName the name of the item to remove
+     */
     public void removeItem(String itemName){
         for (int i = 0; i < inventory.length; i++) {
             if (this.inventory[i] != null) {
                 if (inventory[i].getName().equalsIgnoreCase(itemName)) {
                     inventory[i] = null;
+                    break;
                 }
             }
         }
     }
 
     /**
-     * method that lets load inventory
-     * @return inventory
+     * Generates a formatted string representing the player's current inventory.
+     * Displays the names of the items or indicates if a slot is empty.
+     * @return a formatted string of the inventory contents
      */
     public String openInventory() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -87,34 +111,34 @@ public class Player {
     }
 
     /**
-     * method tha
-     * @param item
-     * @return
+     * Attempts to add an item to the first available slot in the player's inventory.
+     * @param item the item to pick up
+     * @return a success message if picked up, or an error message if the inventory is full
      */
     public String pickUp(Item item) {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null){
                 inventory[i] = item;
-                return "Item " + item.getName() + " picked up";
+                return "Item " + item.getName() + "has been picked up";
             }
         }
         return "Inventory is full";
     }
+
+    /**
+     * Removes an item from the inventory (simulating dropping it).
+     * @param item the item to drop
+     * @return a success message if dropped, or an error message if it wasn't found
+     */
     public String dropDown(Item item) {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i].getName().equalsIgnoreCase(item.getName())){
                 inventory[i] = null;
-                return "item was droped down";
+                return "Item '" + item.getName() + "' was dropped.";
             }
         }
-        return "item wasnt found in the inventory";
+        return "Item wasn't found in the inventory.";
     }
-
-    public int getTimeRemaining() { return timeRemaining; }
-    public void setTimeRemaining(int timeRemaining) { this.timeRemaining = timeRemaining; }
-
-    public int getLoopCount() { return loopCount; }
-    public void incrementLoop() { this.loopCount++; }
 
     @Override
     public String toString() {
@@ -126,14 +150,23 @@ public class Player {
                 '}';
     }
 
+    public int getTimeRemaining() { return timeRemaining; }
+    public void setTimeRemaining(int timeRemaining) { this.timeRemaining = timeRemaining; }
+
+    public int getLoopCount() { return loopCount; }
+    public void incrementLoop() { this.loopCount++; }
+
     public boolean isSuitEquiped() {
         return isSuitEquiped;
     }
+    public void setSuitEquiped(boolean suitEquiped) {
+        isSuitEquiped = suitEquiped;
+    }
+
 
     public Room getCurrRoom() {
         return currRoom;
     }
-
     public void setCurrRoom(Room currRoom) {
         this.currRoom = currRoom;
     }
@@ -141,11 +174,6 @@ public class Player {
     public Item[] getInventory() {
         return inventory;
     }
-
-    public void setSuitEquiped(boolean suitEquiped) {
-        isSuitEquiped = suitEquiped;
-    }
-
     public void setInventory(Item[] inventory) {
         this.inventory = inventory;
     }
@@ -153,7 +181,6 @@ public class Player {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -161,9 +188,7 @@ public class Player {
     public int getWinState() {
         return winState;
     }
-
     public void setWinState(int winState) {
         this.winState = winState;
     }
 }
-

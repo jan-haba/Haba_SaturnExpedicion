@@ -5,6 +5,10 @@ import Items.Item;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Represents an NPC (Non-Player Character) in the game.
+ * Characters can hold items, have predefined dialogue trees, and potentially follow the player.
+ */
 public class Character {
     private String name;
     private String description;
@@ -25,10 +29,11 @@ public class Character {
         this.dialogues = new HashMap<>();
         this.isFollower = isFollower;
     }
-    public HashMap<Integer, String> getDialogue(){
-        return dialogues;
-    }
 
+    /**
+     * Formats the character's available dialogue options into a readable menu for the console.
+     * @return the formatted dialogue string
+     */
     public String printDialogues() {
         if (dialogues == null || dialogues.isEmpty()) {
             return name + " has nothing to say.";
@@ -42,11 +47,17 @@ public class Character {
         sb.append("Choose answer by typing number:");
         return sb.toString();
     }
-    public void setFollower(boolean follower) {
-        this.isFollower = follower;
-    }
 
+    /**
+     * Attempts to take an item from the character's inventory by its ID.
+     * @param itemID the unique ID of the item
+     * @return the requested Item, or null if the character doesn't have it
+     */
     public Item giveItem(String itemID) {
+        if (this.items == null) {
+            return null;
+        }
+
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equalsIgnoreCase(itemID)) {
                 Item item = items.get(i);
@@ -55,6 +66,20 @@ public class Character {
             }
         }
         return null;
+    }
+
+    /**
+     * Adds an item to the character's inventory.
+     * @param item the item to add
+     */
+    public void addItem(Item item){
+        if (this.items == null) {
+            this.items = new ArrayList<>();
+        }
+
+        if (item!= null){
+            this.items.add(item);
+        }
     }
 
     @Override
@@ -81,12 +106,16 @@ public class Character {
     public ArrayList<String> getItemsRaw() {
         return itemsRaw;
     }
-    public void addItem(Item item){
-        if (item!= null){
-            items.add(item);
-        }
-    }
+
     public void setCurrRoomID(String currRoomID) {
         this.currRoomID = currRoomID;
+    }
+
+    public HashMap<Integer, String> getDialogue(){
+        return dialogues;
+    }
+
+    public void setFollower(boolean follower) {
+        this.isFollower = follower;
     }
 }

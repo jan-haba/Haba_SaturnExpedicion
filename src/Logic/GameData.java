@@ -11,6 +11,10 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+/**
+ * Handles the loading, instantiation, and linking of all game data from a JSON file.
+ * This class acts as the central repository for rooms, items, game objects, and characters.
+ */
 public class GameData {
     public ArrayList<Room>rooms;
     public ArrayList<Item>items;
@@ -35,11 +39,11 @@ public class GameData {
     }
 
     /**
-     * method that loads all game data from JSON
-     * @param resourcePath
-     * @return
+     * Loads and parses the game data from a specified JSON resource path using Gson.
+     * @param resourcePath the path to the JSON file in the resources folder
+     * @return a populated GameData instance
+     * @throws RuntimeException if the file is not found or parsing fails
      */
-
     public static GameData loadGameDataFromResources(String resourcePath) {
         Gson gson = new Gson();
         try (InputStream is = Main.class.getResourceAsStream(resourcePath)) {
@@ -54,15 +58,12 @@ public class GameData {
             throw new RuntimeException("Trouble when loading JSON: " + e.getMessage());
         }
     }
-
-    public ArrayList<Room> getRooms() {
-        return rooms;
-    }
-
+// ======LOCATING METHODS=========
     /**
-     * method that helps find a room
-     * @param roomName = name of that room
-     * @return wanted room
+     * Searches for a room by its exact name.
+     * @param roomName the display name of the room
+     * @return the requested Room object
+     * @throws IllegalArgumentException if no room with that name exists
      */
     public Room locateRoom(String roomName){
         for (Room room: rooms) {
@@ -70,17 +71,72 @@ public class GameData {
                 return room;
             }
         }
-        throw new IllegalArgumentException("Room wasnt found with this name");
+        throw new IllegalArgumentException("Room wasn't found with this name: " + roomName);
     }
+
+    /**
+     * Searches for an item by its exact name.
+     * @param itemName the display name of the item
+     * @return the requested Item object
+     * @throws IllegalArgumentException if no item with that name exists
+     */
     public Item locateItem(String itemName){
         for (Item item: items){
             if(item.getName().equals(itemName)){
                 return item;
             }
         }
-        throw new IllegalArgumentException("Item wasnt found with this name");
+        throw new IllegalArgumentException("Item wasn't found with this name: " + itemName);
     }
 
+    /**
+     * Finds item by id
+     * @param id id of the item
+     * @return found item
+     * @throws IllegalArgumentException if no item with that id exists
+     */
+    private Item findItemById(String id) {
+        for (Item i : items) {
+            if (i.getId().equals(id))
+                return i;
+        }
+        throw new IllegalArgumentException("Item wasn't found with this id: " + id);
+    }
+
+    /**
+     * Finds character by id
+     * @param id of the character
+     * @return found character
+     * @throws IllegalArgumentException if no character with that id exists
+     */
+    private Character findCharacterById(String id){
+        for (Character character : characters) {
+            if (character.getId().equals(id)) {
+                return character;
+            }
+        }
+        throw new IllegalArgumentException("Character wasn't found with this id: " + id);
+    }
+
+    /**
+     * Finds game object by its id
+     * @param id of the object
+     * @return found object
+     * @throws IllegalArgumentException if no game object with that id exists
+     */
+    private GameObject findObjectById(String id) {
+        for (GameObject obj : gameObjects) {
+            if (obj.getId().equals(id)) {
+                return obj;
+            }
+        }
+        return null;
+    }
+// ======CONVERTING METHODS=========
+    /**
+     * Iterates through the raw item data parsed from JSON and instantiates the proper
+     * Item subclasses (Note, Suit, Card, Toolkit, or standard Item).
+     */
     public void convertItems(){
         for (ItemRaw itemRaw : itemsRaw){
             Item item;
@@ -111,34 +167,11 @@ public class GameData {
             items.add(item);
         }
     }
-    public void linkItemsToRooms() {
-        for (Room r : rooms) {
-            if (r.getItemsRaw() != null) {
-                for (String id : r.getItemsRaw()) {
-                    Item found = findItemById(id);
-                    if (found != null) {
-                        r.addItem(found);
-                    }
-                }
-            }
-        }
-    }
 
-    private Item findItemById(String id) {
-        for (Item i : items) {
-            if (i.getId().equals(id))
-                return i;
-        }
-        return null;
-    }
-    private Item findItemByName(String name){
-        for(Item i : items){
-            if (i.getName().equals(name)){
-                return i;
-            }
-        }
-        return null;
-    }
+    /**
+     * Iterates through raw game object data and instantiates the proper
+     * GameObject subclasses (Storage, ControlPanel, Reactor, EscapeModule).
+     */
     public void convertObjects() {
         for (GameObjectRaw raw : gameObjectRaws) {
             if (raw.type.equals("Storage")) {
@@ -169,10 +202,28 @@ public class GameData {
             }
         }
     }
-
-    public ArrayList<GameObject> getGameObjects() {
-        return gameObjects;
+// ======LINKING METHODS=========
+    /**
+     * Links fully instantiated Item objects to their respective Rooms based on raw string IDs.
+     */
+    public void linkItemsToRooms() {
+        for (Room r : rooms) {
+            if (r.getItemsRaw() != null) {
+                for (String id : r.getItemsRaw()) {
+                    Item found = findItemById(id);
+                    if (found != null) {
+                        r.addItem(found);
+                    }
+                }
+            }
+        }
     }
+
+
+
+    /**
+     * Links fully instantiated GameObjects to their respective Rooms based on raw string IDs.
+     */
     public void linkObjectsToRooms() {
         for (Room r : rooms) {
             if (r.getGameObjectsRaw() != null) {
@@ -185,6 +236,10 @@ public class GameData {
             }
         }
     }
+
+    /**
+     * Links Characters to their respective Rooms based on raw string IDs.
+     */
     public void linkCharactersToRooms(){
         for (Room r : rooms){
             if (r.getCharactersRaw() != null){
@@ -197,15 +252,10 @@ public class GameData {
             }
         }
     }
-    private Character findCharacterById(String id){
-        for (Character character : characters) {
-            if (character.getId().equals(id)) {
-                return character;
-            }
-        }
-        return null;
 
-    }
+    /**
+     * Links Items to Characters' inventories based on raw string IDs.
+     */
     public void linkItemsToCharacters(){
         for (Character character : characters){
             if (character.getItemsRaw()!= null){
@@ -219,17 +269,9 @@ public class GameData {
         }
     }
 
-
-
-
-    private GameObject findObjectById(String id) {
-        for (GameObject obj : gameObjects) {
-            if (obj.getId().equals(id)) {
-                return obj;
-            }
-        }
-        return null;
-    }
+    /**
+     * Links specific Items (tools) to Toolkit objects based on raw string IDs.
+     */
     public void linkToolsToToolkits() {
         for (Item toolkit: items) {
             if (toolkit instanceof Toolkit) {
@@ -246,6 +288,11 @@ public class GameData {
         }
 
     }
+
+    /**
+     * Maps the dynamically generated access codes from Note items
+     * directly to the doors/rooms they are meant to unlock.
+     */
     public void setCodesToRooms(){
         for (Item item: items){
             if (item instanceof Note){
@@ -288,7 +335,21 @@ public class GameData {
     public ArrayList<String> getCommands() {
         return commands;
     }
+
+    public ArrayList<Room> getRooms() {
+        return rooms;
+    }
+
+    public ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+
 }
+
+/**
+ * Temporary data transfer object (DTO) used by Gson to parse items before
+ * they are fully instantiated into specific Item subclasses.
+ */
 class ItemRaw{
     String id;
     String name;
@@ -298,6 +359,10 @@ class ItemRaw{
     String roomID;
 }
 
+/**
+ * Temporary data transfer object (DTO) used by Gson to parse game objects before
+ * they are fully instantiated into specific GameObject subclasses.
+ */
 class GameObjectRaw {
     public String type;
     public String id;

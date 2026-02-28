@@ -3,7 +3,6 @@ package Objects;
 /**
  * Class for Reactor
  */
-
 public class Reactor extends GameObject{
     private boolean isFixed;
 
@@ -17,7 +16,6 @@ public class Reactor extends GameObject{
      * @param player gives method a way to interact with player
      * @return state of the Reactor if it is fixed or not and what you need to fix it.
      */
-
     @Override
     public String execute(Player player) {
         if (!player.hasItem("fire_extinguisher")){
