@@ -16,7 +16,7 @@ public class Console {
 
     private void putCommands(){
         commands.put("go",new GoTo(this.player,this.data));
-        commands.put("help", new Help());
+        commands.put("help", new Help(data));
         commands.put("inventory", new Inventory(player));
         commands.put("pick", new PickUp(player));
         commands.put("drop", new DropDown(player));
@@ -26,6 +26,8 @@ public class Console {
         commands.put("examine", new Examine(player));
         commands.put("talk", new Talk(player, data));
         commands.put("time", new Time(player));
+        commands.put("description", new Description(player));
+        commands.put("clue", new Clue());
     }
 
     public Console(Player player, GameData data) {

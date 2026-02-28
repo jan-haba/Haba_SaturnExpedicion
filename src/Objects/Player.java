@@ -72,13 +72,18 @@ public class Player {
      * method that lets load inventory
      * @return inventory
      */
-    public void openInventory() {
-        System.out.println("\n==========================================");
-        System.out.println("             INVENTORY             ");
-        System.out.println("==========================================");
-        for (int i = 0; i < inventory.length; i++) {
-            System.out.println("-" + inventory[i]);
+    public String openInventory() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Item item: inventory){
+            String line = "";
+            if (item != null){
+                line = item.getName();
+                stringBuilder.append("- ").append(line).append("\n");
+            }else {
+                stringBuilder.append("- [Empty]").append("\n");
+            }
         }
+        return stringBuilder.toString();
     }
 
     /**

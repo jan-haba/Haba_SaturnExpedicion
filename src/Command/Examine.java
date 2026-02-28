@@ -5,9 +5,10 @@ import Objects.GameObject;
 import Objects.Player;
 
 /**
- * command used for examination of item or object
+ * Command for examining items or game objects.
+ * Allows the player to read the description of an item in their inventory
+ * or an item/object located in the current room.
  */
-
 public class Examine implements Command{
     private Player player;
 
@@ -16,17 +17,23 @@ public class Examine implements Command{
     }
 
     /**
-     * method execute
-     * @param command name of the item/game object
-     * @return objects description or message that the object does not exist
+     * Executes the examine command.
+     * Searches for the specified target first in the player's inventory,
+     * and then in the current room.
+     * @param command the name of the item or game object to examine
+     * @return the description of the object, or a message indicating it wasn't found
      */
-
     @Override
     public String execute(String command) {
+        if (command == null || command.trim().isEmpty()) {
+            return "What do you want to examine?";
+        }
+
         Item inventoryItem = player.getItem(command);
         if (inventoryItem != null) {
             return inventoryItem.getDescription();
         }
+
         Object target = player.getCurrRoom().findObject(command);
         if (target != null) {
             if (target instanceof Item) {
@@ -40,8 +47,8 @@ public class Examine implements Command{
     }
 
     /**
-     * just exit
-     * @return
+     * Determines if executing this command should exit the game.
+     * @return false, as examining an object does not terminate the main game loop
      */
     @Override
     public boolean exit() {

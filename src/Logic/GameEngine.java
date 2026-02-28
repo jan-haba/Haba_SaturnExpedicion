@@ -107,7 +107,7 @@ public class GameEngine {
     public void startGameLoop() {
         while (true) {
             console.setExit(false);
-            player.setTimeRemaining(5);
+            player.setTimeRemaining(120);
             startRealTimeTimer();
 
             console.start();

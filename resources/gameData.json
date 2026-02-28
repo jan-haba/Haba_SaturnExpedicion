@@ -320,5 +320,31 @@
       "requiredCode": 0
 
     }
+  ],
+  "commands": [
+    "=================================================================",
+    "                 MI BOMDO TX670 - SYSTEM HELP              ",
+    "=================================================================",
+    "MOVEMENT & EXPLORATION",
+    "  description               -> Look around and read the room's description.",
+    "  go <room name>            -> Move to an adjacent room.",
+    "  examine <item/object>     -> Read details about an item or object.",
+    "",
+    "INVENTORY MANAGEMENT",
+    "  inventory                 -> Display items you are carrying.",
+    "  pick <item>               -> Pick up an item from the room.",
+    "  drop <item>               -> Drop an item from your inventory.",
+    "  equip <item>              -> Put on protective gear (e.g., suit).",
+    "",
+    "INTERACTION",
+    "  interact <item/object>    -> Use machines, panels, or the reactor.",
+    "  talk <character name>     -> Speak to a person in the current room.",
+    "",
+    "SYSTEM & SURVIVAL",
+    "  clue                      -> Get a hint on what you need to achieve your goal.",
+    "  time                      -> Check remaining time and current loop.",
+    "  help                      -> Display this command list.",
+    "  end                       -> Exit the game immediately.",
+    "================================================================="
   ]
 }

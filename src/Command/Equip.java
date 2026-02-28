@@ -5,7 +5,6 @@ import Objects.Player;
 /**
  * Command for equipping items (e.g., suit).
  */
-
 public class Equip implements Command {
     private Player player;
 
@@ -28,6 +27,7 @@ public class Equip implements Command {
             }
             return "You don't have a suit in your inventory.";
         }
+
         if (command.isEmpty()) {
             return "What do you want to equip?";
         }
@@ -35,7 +35,8 @@ public class Equip implements Command {
     }
 
     /**
-     * @return false
+     * Determines if executing this command should exit the game.
+     * @return false, as equipping an item (suit) does not terminate the main game loop
      */
     @Override
     public boolean exit() {

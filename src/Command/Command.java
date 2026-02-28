@@ -1,7 +1,7 @@
 package Command;
 
 /**
- * Interface for Commands.
+ * Interface for commands.
  */
 public interface Command {
      String execute(String command);

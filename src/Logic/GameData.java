@@ -21,6 +21,7 @@ public class GameData {
     public ArrayList <Integer>codes;
     private String gameState = "EXPLORING";
     private Character activeCharacter = null;
+    private ArrayList<String> commands;
 
     public GameData() {
         this.rooms = new ArrayList<>();
@@ -30,6 +31,7 @@ public class GameData {
         this.gameObjects = new ArrayList<>();
         this.gameObjectRaws = new ArrayList<>();
         this.codes = new ArrayList<>();
+        this.commands = new ArrayList<>();
     }
 
     /**
@@ -283,6 +285,9 @@ public class GameData {
         this.gameState = gameState;
     }
 
+    public ArrayList<String> getCommands() {
+        return commands;
+    }
 }
 class ItemRaw{
     String id;
