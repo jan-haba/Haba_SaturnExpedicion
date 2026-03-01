@@ -26,18 +26,12 @@ public class DropDown implements Command{
     @Override
     public String execute(String command) {
         room = player.getCurrRoom();
-        Item itemFound = null;
+        Item itemFound = player.getItem(command);
 
-        for (Item item : player.getInventory()){
-            if (item != null && item.getName().equalsIgnoreCase(command)){
-                itemFound = item;
-                break;
-            }
-        }
-
-        if (itemFound != null){
-            room.addItem(itemFound);
+        if (itemFound != null) {
             player.dropDown(itemFound);
+            room.addItem(itemFound);
+
             return "Item '" + itemFound.getName() + "' was dropped on the floor.";
         }else{
             return "Item wasn't found in your inventory.";

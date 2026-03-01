@@ -84,6 +84,7 @@ public class GameEngine {
                     player.setChoosenPath(pathChoice);
 
                     startGameLoop();
+                    System.out.println("LOOP COUNT: " + player.getLoopCount());
                     inMenu = false;
                     break;
                 case "2":
@@ -112,7 +113,7 @@ public class GameEngine {
             System.out.println("\nWrite help to show all of the available commands (write description to learn more about your current room).");
 
             console.setExit(false);
-            player.setTimeRemaining(3600);
+            player.setTimeRemaining(150);
             startRealTimeTimer();
 
             console.start();
@@ -150,11 +151,7 @@ public class GameEngine {
 
                 if (player.getTimeRemaining() <= 0) {
                     player.setWinState(-1);
-                    System.out.println("\n\n=======================================================");
-                    System.out.println("                 !!! OUT OF TIME !!!                   ");
-                    System.out.println(" The reactor exploded! The ship is falling apart!      ");
-                    System.out.println("=======================================================");
-                    System.out.println(">>> PRESS 'ENTER' TO INITIATE TIME LOOP <<<");
+                    System.out.println(gameData.getUI().get("out_of_time"));
                     System.out.print(">> ");
                     timer.cancel();
                 }
@@ -179,12 +176,9 @@ public class GameEngine {
      */
     private void resetTimeLoop() {
         player.incrementLoop();
-        System.out.println("\n*************************************************************************");
-        System.out.println("Everything goes dark... You feel a strange pulling sensation.");
-        System.out.println("...");
-        System.out.println("You wake up with a gasp. Lucy is shaking you.");
+        System.out.println(gameData.getUI().get("reset"));
         System.out.println("LOOP " + player.getLoopCount() + " INITIATED.");
-        System.out.println("*************************************************************************\n");
+        System.out.println("************************************************\n");
 
         loadAndLinkData();
 

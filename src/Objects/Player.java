@@ -156,8 +156,11 @@ public class Player {
      * @return a success message if dropped, or an error message if it wasn't found
      */
     public String dropDown(Item item) {
+        if (item == null) {
+            return "You must specify what item you want to drop.";
+        }
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i].getName().equalsIgnoreCase(item.getName())){
+            if (inventory[i] != null && inventory[i].getName().equalsIgnoreCase(item.getName())) {
                 inventory[i] = null;
                 return "Item '" + item.getName() + "' was dropped.";
             }
