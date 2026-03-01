@@ -16,7 +16,21 @@ public class Storage extends GameObject{
 
     @Override
     public String execute(Player player) {
-        return super.execute(player);
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n==================================================").append("\n                 " + name.toUpperCase()).append("\n==================================================");
+        sb.append("\nCONTENT: ");
+
+        if (items == null || items.isEmpty()) {
+            sb.append(" - [Empty]");
+        } else {
+            sb.append("\n");
+            for (Item item : items) {
+                sb.append("- ").append(item.getName()).append("\n");
+            }
+        }
+        sb.append("==================================================");
+        sb.append("\nType 'pick <item name>' if you want to get something from the rack.");
+        return sb.toString();
     }
 
     /**
@@ -51,18 +65,19 @@ public class Storage extends GameObject{
     @Override
     public String getDescription() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n=== ").append(name.toUpperCase()).append(" ===\n");
-        sb.append("Description: ").append(description).append("\n");
-        sb.append("Content: ");
+        sb.append("\n==================================================").append("\n                 " + name.toUpperCase()).append("\n==================================================");
+        sb.append("\nDESCRIPTION: ").append(description).append("\n");
+        sb.append("CONTENT: ");
 
         if (items == null || items.isEmpty()) {
-            sb.append("Empty");
+            sb.append(" - [Empty]");
         } else {
             sb.append("\n");
             for (Item item : items) {
-                sb.append("  - ").append(item.getName()).append("\n");
+                sb.append("- ").append(item.getName()).append("\n");
             }
         }
+        sb.append("==================================================");
         return sb.toString();
     }
 }

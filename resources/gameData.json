@@ -98,7 +98,7 @@
     }
   ],
 
-  "gameObjectRaws":[
+  "gameObjectRaws": [
     {
       "type": "Storage",
       "id": "storage",
@@ -111,14 +111,32 @@
       "id": "reactor",
       "name": "Reactor",
       "description": "all power comes from here",
-      "isFixed": false
+      "isFixed": false,
+      "isFireExtinguished": false,
+      "isCardInserted":false,
+      "isCalibrated": false,
+      "isWelded": false
     },
     {
       "type": "ControlPanel",
       "id": "control_panel",
       "name": "Control Panel",
-      "description": "control something idk",
-      "isActivated": false
+      "description": "Controls something idk, used to power both of the escape modules.",
+      "isActivated": false,
+      "puzzles":{
+        "12 * 8 - 4 = ?": "92",
+        "225 / 15 = ?": "15",
+        "Convert binary 1010 to decimal format": "10",
+        "5 to the power of 3 = ?": "125",
+        "2, 6, 12, 20, 30, ?": "42",
+        "10 + 10 * 0 + 10 = ?": "20",
+        "If 3 drones can repair 3 vents in 3 hours, how many hours does it take 1 drone to repair 1 vent?": "3",
+        "Convert port ID from hexadecimal '0A' to decimal": "10",
+        "(45 + 15) * 3 = ?": "180",
+        "Ship travels at 100 million km/day. Distance to Saturn is 1.2 billion km. How many days to arrive?": "12",
+        "144 / 12 + 8 = ?": "20",
+        "What is the next prime number after 13?": "17"
+      }
     },
     {
       "type": "EscapeModule",
@@ -327,12 +345,12 @@
     "=================================================================",
     "MOVEMENT & EXPLORATION",
     "  description               -> Look around and read the room's description.",
-    "  go <room name>            -> Move to an adjacent room.",
+    "  go <room name>            -> Move to a neighboring room.",
     "  examine <item/object>     -> Read details about an item or object.",
     "",
     "INVENTORY MANAGEMENT",
     "  inventory                 -> Display items you are carrying.",
-    "  pick <item>               -> Pick up an item from the room.",
+    "  pick <item>               -> Pick up an item.",
     "  drop <item>               -> Drop an item from your inventory.",
     "  equip <item>              -> Put on protective gear (e.g., suit).",
     "",

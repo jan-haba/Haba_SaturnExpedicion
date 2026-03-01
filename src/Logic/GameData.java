@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Handles the loading, instantiation, and linking of all game data from a JSON file.
@@ -188,11 +189,11 @@ public class GameData {
                 gameObjects.add(storage);
             }
             if(raw.type.equals("ControlPanel")) {
-                ControlPanel controlPanel = new ControlPanel(raw.name, raw.id, raw.description, raw.isActivated);
+                ControlPanel controlPanel = new ControlPanel(raw.name, raw.id, raw.description, raw.isActivated, raw.puzzles);
                 gameObjects.add(controlPanel);
             }
             if(raw.type.equals("Reactor")) {
-                Reactor reactor = new Reactor(raw.name, raw.id, raw.description,raw.isFixed);
+                Reactor reactor = new Reactor(raw.name, raw.id, raw.description,raw.isFixed, raw.isFireExtinguished, raw.isCardInserted, raw.isCalibrated, raw.isWelded);
                 gameObjects.add(reactor);
             }
             if(raw.type.equals("EscapeModule")) {
@@ -364,12 +365,17 @@ class ItemRaw{
  * they are fully instantiated into specific GameObject subclasses.
  */
 class GameObjectRaw {
-    public String type;
-    public String id;
-    public String name;
-    public String description;
-    public ArrayList<String> itemsRaw;
-    public boolean isActivated;
-    public boolean isFixed;
+    String type;
+    String id;
+    String name;
+    String description;
+    ArrayList<String> itemsRaw;
+    boolean isActivated;
+    boolean isFixed;
+    HashMap<String,String>puzzles;
+    boolean isFireExtinguished ;
+    boolean isCardInserted;
+    boolean isCalibrated;
+    boolean isWelded ;
 }
 

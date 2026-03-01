@@ -59,6 +59,22 @@ public class Player {
     }
 
     /**
+     * Checks if the player's inventory contains an item with a specific name.
+     * @param itemname the unique name of the item to look for
+     * @return true if the item is in the inventory, false otherwise
+     */
+    public boolean hasItemName(String itemname){
+        for (int i = 0; i < inventory.length; i++) {
+            if (this.inventory[i] != null) {
+                if (inventory[i].getName().equalsIgnoreCase(itemname)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Searches the inventory for an item by its exact name.
      * @param itemName the display name of the item
      * @return the Item object if found, or null if it's not in the inventory
@@ -119,7 +135,7 @@ public class Player {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null){
                 inventory[i] = item;
-                return "Item " + item.getName() + "has been picked up";
+                return "Item " + item.getName() + " has been picked up";
             }
         }
         return "Inventory is full";
