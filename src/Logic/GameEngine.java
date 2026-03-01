@@ -26,7 +26,7 @@ public class GameEngine {
      */
     public GameEngine( ) {
         loadAndLinkData();
-        this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false,0,0,1);
+        this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false,0,0,1,"");
         this.console = new Console(player,gameData);
     }
 
@@ -64,24 +64,25 @@ public class GameEngine {
         boolean inMenu = true;
 
         while (inMenu) {
-            System.out.println("\n=======================================================");
-            System.out.println("  ___  __  ____  _  _  ____  _  _    ___  _  _  ____  ");
-            System.out.println(" / __)/  \\(_  _)/ )( \\(  _ \\( \\( )  / __)( \\/ )(  _ \\ ");
-            System.out.println(" \\__ \\  O \\ )(  ) \\/ ( )   / )  (   \\__ \\ )  /  ) __/ ");
-            System.out.println(" (___/\\__/ (__) \\____/(__\\_)(_)\\_)  (___/(__/  (__)   ");
-            System.out.println("=======================================================");
-            System.out.println("               1. Start Game                           ");
-            System.out.println("               2. About / Story                        ");
-            System.out.println("               3. Exit                                 ");
-            System.out.println("=======================================================");
-            System.out.print("Select an option: ");
+            System.out.println(gameData.logo());
+            System.out.println(gameData.getUI().get("menu"));
 
             String choice = scanner.nextLine().trim();
 
             switch (choice) {
                 case "1":
-                    System.out.println("\nInitializing systems... Waking up in Reactor...");
-                    System.out.println(player.getCurrRoom().getRoom());
+                    System.out.println(gameData.getUI().get("story"));
+
+                    System.out.println("Will you try to SAVE THE SHIP (type 'reactor') or ESCAPE THE SHIP (type 'escape')?");
+                    System.out.print("Make your choice >> ");
+
+                    String pathChoice = scanner.nextLine().trim().toLowerCase();
+                    while (!pathChoice.equals("reactor") && !pathChoice.equals("escape")) {
+                        System.out.print("Invalid choice. Please type 'reactor' or 'escape' >> ");
+                        pathChoice = scanner.nextLine().trim().toLowerCase();
+                    }
+                    player.setChoosenPath(pathChoice);
+
                     startGameLoop();
                     inMenu = false;
                     break;
@@ -89,7 +90,7 @@ public class GameEngine {
                     printAbout();
                     break;
                 case "3":
-                    System.out.println("\nExiting Saturn Expedition. Goodbye!");
+                    System.out.println(gameData.getUI().get("exit"));
                     inMenu = false;
                     break;
                 default:
@@ -106,11 +107,16 @@ public class GameEngine {
      */
     public void startGameLoop() {
         while (true) {
+
+            System.out.println("\nLucy is standing right in front of you, looking worried.");
+            System.out.println("\nWrite help to show all of the available commands (write description to learn more about your current room).");
+
             console.setExit(false);
-            player.setTimeRemaining(3600);
+            player.setTimeRemaining(10);
             startRealTimeTimer();
 
             console.start();
+
 
             stopTimer();
 
@@ -186,8 +192,6 @@ public class GameEngine {
         player.setWinState(0);
 
         console.setGameData(gameData);
-
-        System.out.println(player.getCurrRoom().getRoom());
     }
 
     /**
@@ -195,13 +199,7 @@ public class GameEngine {
      * Waits for the user to press Enter before returning to the main menu.
      */
     private void printAbout() {
-        System.out.println("\n--- ABOUT SATURN EXPEDITION ---");
-        System.out.println("Year 2099. You are Markus Hayers, an operator on the Mi Bomdo TX670 spaceship.");
-        System.out.println("During the first exploration mission to Saturn, a piece of rock hits the ship's engine.");
-        System.out.println("The alarm is blaring. You have limited time to prevent the ship's self-destruction,");
-        System.out.println("or escape and save yourself. The choice is yours.");
-        System.out.println("\nGame developed by: Jan Haba");
-        System.out.println("Press Enter to return to the menu...");
+        System.out.println(gameData.getUI().get("about"));
         new Scanner(System.in).nextLine();
     }
 

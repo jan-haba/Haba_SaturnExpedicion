@@ -18,7 +18,7 @@ class DropDownTest {
 
     @BeforeEach
     void setUp() {
-        player = new Player("Marcus", null, true,0,0,1);
+        player = new Player("Marcus", null, true,0,0,1 ,null);
         room = new Room("A", "a", "a", true, 0);
         item = new Item("Item","Item","item","item of the item the itemest item of the all");
 

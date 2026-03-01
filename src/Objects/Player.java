@@ -18,8 +18,9 @@ public class Player {
     private int winState;
     private int timeRemaining;
     private int loopCount;
+    private String choosenPath;
 
-    public Player(String name, Room currRoom, boolean isSuitEquiped, int winState, int timeRemaining, int loopCount) {
+    public Player(String name, Room currRoom, boolean isSuitEquiped, int winState, int timeRemaining, int loopCount, String choosenPath) {
         this.inventory = new Item[4];
         this.name = name;
         this.currRoom = currRoom;
@@ -27,6 +28,7 @@ public class Player {
         this.winState = 0;
         this.loopCount = loopCount;
         this.timeRemaining = timeRemaining;
+        this.choosenPath = choosenPath;
     }
 
     /**
@@ -206,5 +208,12 @@ public class Player {
     }
     public void setWinState(int winState) {
         this.winState = winState;
+    }
+
+    public String getChoosenPath() {
+        return choosenPath;
+    }
+    public void setChoosenPath(String choosenPath) {
+        this.choosenPath = choosenPath;
     }
 }

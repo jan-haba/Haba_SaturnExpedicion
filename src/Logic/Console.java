@@ -35,7 +35,7 @@ public class Console {
         commands.put("talk", new Talk(player, data));
         commands.put("time", new Time(player));
         commands.put("description", new Description(player));
-        commands.put("clue", new Clue());
+        commands.put("clue", new Clue(player,data));
     }
 
     public Console(Player player, GameData data) {
@@ -114,7 +114,7 @@ public class Console {
 
         if (state == 1) {
             System.out.println("\n=======================================================================");
-            System.out.println("                         HERO ENDING ACHIEVED                          ");
+            System.out.println("                         REACTOR ENDING ACHIEVED                          ");
             System.out.println("=======================================================================");
             System.out.println("The alarm stops ringing. The ship's systems return to normal.");
             System.out.println("You wiped the sweat from your forehead. You just saved the entire crew!");
@@ -123,13 +123,6 @@ public class Console {
             this.exit = true;
         }
         else if (state == 2) {
-            System.out.println("\n=======================================================================");
-            System.out.println("                       SURVIVOR ENDING ACHIEVED                        ");
-            System.out.println("=======================================================================");
-            System.out.println("The engine ignites with a massive roar, and you shoot out into space,");
-            System.out.println("leaving the doomed ship Mi Bomdo TX670 behind.");
-            System.out.println("You survived... but was it the right choice?");
-            System.out.println("=======================================================================\n");
             this.exit = true;
         }
     }
@@ -161,7 +154,7 @@ public class Console {
                         } else if (choice == 2) {
                             npc.setFollower(true);
                             System.out.println("Lucy: 'Okay, I'll come with you. Don't leave me alone.'");
-                            player.getCurrRoom().getCharacters().clear();
+                            player.getCurrRoom().getCharacters().remove(npc);
                         }
                         break;
 
@@ -177,11 +170,17 @@ public class Console {
                             }
                         } else if (choice == 2) {
                             System.out.println("I'm not giving you anything until you warn Caroline. Go tell her, then we'll talk.");
-                            //TODO: CAPTAIN runs to EM
+                            System.out.println("Captain: 'I'm not giving you anything until you warn Caroline. Go tell her, then we'll talk.'");
+                            System.out.println("The Captain pushes past you and rushes towards Escape Module 2.");
+                            player.getCurrRoom().getCharacters().remove(npc);
+                            data.locateRoom("Escape Module 2").addCharacter(npc);
 
                         } else if (choice == 3) {
                             System.out.println("Captain: 'Finally a reasonable idea. See ya, Hayers!'");
-                            // TODO: Captain runs away logic
+                            System.out.println("Captain: 'Finally a reasonable idea. See ya, Hayers!'");
+                            System.out.println("The Captain cowardly abandons his post and sprints towards Escape Module 2.");
+                            player.getCurrRoom().getCharacters().remove(npc);
+                            data.locateRoom("Escape Module 2").addCharacter(npc);
                         } else if (choice == 4) {
                             System.out.println("You left the Captain alone.");
                         }
@@ -190,7 +189,9 @@ public class Console {
                     case "caroline":
                         if (choice == 1) {
                             System.out.println("Caroline: 'Fine! I wasn't talking to you anyway.'");
-                            // TODO: Caroline runs away logic
+                            System.out.println("Caroline packs her things and runs away towards Escape Module 2.");
+                            player.getCurrRoom().getCharacters().remove(npc);
+                            data.locateRoom("Escape Module 2").addCharacter(npc);
                         } else if (choice == 2) {
                             System.out.println("You left Caroline alone.");
                         }

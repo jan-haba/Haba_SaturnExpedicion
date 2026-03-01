@@ -2,6 +2,9 @@ package Command;
 
 import Logic.GameData;
 import Objects.Player;
+import Objects.Room;
+
+import java.util.Scanner;
 
 /**
  * Command for player movement.
@@ -38,19 +41,56 @@ public class GoTo implements Command {
      */
     public String move(String roomName){
         String actualExit = null;
+
         for (String exit : player.getCurrRoom().getExits()) {
             if (exit.equalsIgnoreCase(roomName)) {
                 actualExit = exit;
                 break;
             }
         }
+
         if (actualExit != null) {
-            player.setCurrRoom(data.locateRoom(actualExit));
-            return player.getCurrRoom().getRoom() + "\nPlayer has moved to " + actualExit;
+            Room targetRoom = data.locateRoom(actualExit);
+
+            if (!targetRoom.isAccessible()) {
+
+                if (targetRoom.getRequiredCode() == -1) {
+                    return "The door to " + targetRoom.getName() + " is completely jammed or destroyed. You cannot enter.";
+                }
+
+                System.out.println("\n[SECURITY SYSTEM]");
+                System.out.println("The door to " + targetRoom.getName() + " is locked.");
+                System.out.println("A keypad is waiting for a PIN code (type 'exit' to step back).");
+                System.out.print("Enter code >> ");
+
+                @SuppressWarnings("resource")
+                Scanner scanner = new Scanner(System.in);
+                String input = scanner.nextLine().trim();
+
+                if (input.equalsIgnoreCase("exit")) {
+                    return "You stepped away from the door.";
+                }
+
+                try {
+                    int enteredCode = Integer.parseInt(input);
+                    if (enteredCode == targetRoom.getRequiredCode()) {
+                        targetRoom.setAccessible(true);
+                        player.setCurrRoom(targetRoom);
+                        return "\n[ACCESS GRANTED] The door unlocks and opens...\n" + player.getCurrRoom().getRoom();
+                    } else {
+                        return "[ACCESS DENIED] Incorrect code. The door remains locked.";
+                    }
+                } catch (NumberFormatException e) {
+                    return "[ERROR] Invalid input. The keypad only accepts numbers.";
+                }
+            }
+
+            player.setCurrRoom(targetRoom);
+            return player.getCurrRoom().getRoom() + "\nYou moved to " + targetRoom.getName() + ".";
+
         } else {
             return "Room wasn't found or it doesn't connect to your current location.";
         }
-
     }
 
     /**

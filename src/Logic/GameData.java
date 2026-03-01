@@ -27,6 +27,9 @@ public class GameData {
     private String gameState = "EXPLORING";
     private Character activeCharacter = null;
     private ArrayList<String> commands;
+    private HashMap<String, String> clues;
+    private ArrayList<String> logo;
+    private HashMap<String, String>UI;
 
     public GameData() {
         this.rooms = new ArrayList<>();
@@ -37,6 +40,7 @@ public class GameData {
         this.gameObjectRaws = new ArrayList<>();
         this.codes = new ArrayList<>();
         this.commands = new ArrayList<>();
+
     }
 
     /**
@@ -309,6 +313,20 @@ public class GameData {
         }
     }
 
+    public String logo() {
+        if (logo == null || logo.isEmpty()) {
+            return "SATURN EXPEDITION\n";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String line : logo) {
+            sb.append(line).append("\n");
+        }
+        return sb.toString();
+    }
+
+
+
+
     public ArrayList<Character> getCharacters() {
         return characters;
     }
@@ -345,6 +363,16 @@ public class GameData {
         return gameObjects;
     }
 
+    public HashMap<String, String> getClues() {
+        return clues;
+    }
+    public ArrayList<String> getLOGO() {
+        return logo;
+    }
+
+    public HashMap<String, String> getUI() {
+        return UI;
+    }
 }
 
 /**

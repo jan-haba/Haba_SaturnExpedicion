@@ -34,6 +34,11 @@ public class Note extends Item {
                 '}';
     }
 
+    @Override
+    public String getDescription() {
+        return super.getDescription() + "\n\n[ WRITTEN PIN CODE: " + this.code + " ]";
+    }
+
     public String getRoomID() {
         return roomID;
     }

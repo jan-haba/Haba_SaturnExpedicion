@@ -38,7 +38,7 @@
       "description": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
     {
-      "name": "Note",
+      "name": "Note CC",
       "type": "Note",
       "id": "note_1",
       "description": "code to room",
@@ -47,7 +47,7 @@
 
     },
     {
-      "name": "Note",
+      "name": "Note E",
       "type": "Note",
       "id": "note_2",
       "description": "code to panel",
@@ -364,5 +364,26 @@
     "  help                      -> Display this command list.",
     "  end                       -> Exit the game immediately.",
     "================================================================="
-  ]
+  ],
+  "clues": {
+    "reactor": "\n==================================================\n   MISSION OBJECTIVE: REPAIR REACTOR\n==================================================\nTo prevent the destruction of the ship, you must fully repair the main REACTOR.\nExplore the ship to find these items and interact with the Reactor to use them:\n\n - Protective Suit (must be equipped first!)\n - Fire Extinguisher\n - Reactor Card\n - Calibrator\n - Welding Machine\n\nTip: Talk to the crew and examine toolkits or storage areas.\n==================================================",
+    "escape": "\n==================================================\n MISSION OBJECTIVE: ESCAPE SPACESHIP\n==================================================\nTo escape the doomed ship, you must prepare ESCAPE MODULE for launch.\nExplore the ship to fulfill these requirements:\n\n - Interact with the CONTROL PANEL to route power (requires a security code)\n - Fuel\n - Emergency Kit\n - E.M. Card 2\n\nTip: Pay attention to scattered notes and locked rooms.\n=================================================="
+  },
+  "logo": [
+    "  ▄▄▄▄▄▄▄  ▄▄▄▄   ▄▄▄▄▄▄▄▄▄ ▄▄▄  ▄▄▄ ▄▄▄▄▄▄▄   ▄▄▄    ▄▄▄    ▄▄▄▄▄▄▄ ▄▄▄   ▄▄▄ ▄▄▄▄▄▄▄    ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄  ▄▄▄▄▄▄▄ ▄▄▄▄▄   ▄▄▄▄▄   ▄▄▄    ▄▄▄  ",
+    "█████▀▀▀ ▄██▀▀██▄ ▀▀▀███▀▀▀ ███  ███ ███▀▀███▄ ████▄  ███   ███▀▀▀▀▀ ████▄████ ███▀▀███▄ ███▀▀▀▀▀ ███▀▀██▄  ███  ███▀▀▀▀▀  ███  ▄███████▄ ████▄  ███  ",
+    " ▀████▄  ███  ███    ███    ███  ███ ███▄▄███▀ ███▀██▄███   ███▄▄     ▀█████▀  ███▄▄███▀ ███▄▄    ███  ███  ███  ███       ███  ███   ███ ███▀██▄███  ",
+    "  ▀████  ███▀▀███    ███    ███▄▄███ ███▀▀██▄  ███  ▀████   ███      ▄███████▄ ███▀▀▀▀   ███      ███  ███  ███  ███       ███  ███▄▄▄███ ███  ▀████  ",
+    "███████▀ ███  ███    ███    ▀██████▀ ███  ▀███ ███    ███   ▀███████ ███▀ ▀███ ███       ▀███████ ██████▀  ▄███▄ ▀███████ ▄███▄  ▀█████▀  ███    ███  "
+  ],
+  "UI":{
+    "win_solo": "\n[ENDING: LONE WOLF]\nYou launched the escape pod just in time. Through the small window, you see the SS-HABAN vanish in a silent flash. You are alive, but the guilt of leaving everyone behind follows you into the dark.",
+    "win_with_lucy": "\n[ENDING: SURVIVORS]\nYou and Lucy secured the last pod together. As the ship explodes, she looks at you with relief. You're not just a survivor; you're a partner. The journey ahead is long, but you're not alone.",
+    "win_betrayal": "\n[ENDING: BLOOD IS THICKER THAN WATER]\nYou told them about the pod, but blood is thicker than water. The Captain didn't even look you in the eye as he pushed Caroline inside and locked the hatch. You are left standing in the docking bay, watching the pod vanish into the stars while the reactor behind you reaches critical mass.",
+    "menu": "1. START\n2. ABOUT\n3. EXIT\n=======================================================\nSelect an option by typing a number: ",
+    "path_choice": "\nWill you try to SAVE THE SHIP (type 'reactor') or ESCAPE THE SHIP (type 'escape')?\nMake your choice >> ",
+    "story": "\n================================================================================\n   YEAR: 2167 | LOCATION: DEEP SPACE | MI BOMDO TX670\n================================================================================\n\nYou wake up with a splitting headache. The last thing you remember was a \nblinding flash of white light near the Saturn rings. \n\nSuddenly, the emergency sirens start screaming. Red lights are pulsing \neverywhere. Your terminal shows a critical error: 'REACTOR MELTDOWN IN A FEW MINUTES'.\n\nBut something is wrong... You feel like you've lived through this moment \na thousand times before. Every spark from the cables, every scream in the \ndistance feels familiar. You are trapped in a time loop, and the only way \nto break it is to resolve the disaster at hand.\n================================================================================",
+    "exit": "\n[SYSTEM] Shutting down main terminal...\n[SYSTEM] Powering off life support...\n\nGoodbye, Explorer. See you in the next loop.",
+    "about":"\n--- ABOUT SATURN EXPEDITION ---\nWelcome to Saturn Expedition! This is a console-based sci-fi escape room game.\nIt features time loop mechanics, challenging puzzles, and multiple endings.\n\nThis game is my FIRST proper programming project, created as a student at SPŠE Ječná.\nI am still learning, but I put a lot of passion into building this interactive world.\nThank you for playing and I hope you enjoy the escape!\n\nDeveloper: Jan Haba\n-------------------------------\nPress Enter to return to the menu..."
+  }
 }
