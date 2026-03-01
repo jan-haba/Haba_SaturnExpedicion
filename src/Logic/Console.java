@@ -123,7 +123,19 @@ public class Console {
             this.exit = true;
         }
         else if (state == 2) {
-            this.exit = true;
+
+            if (player.isToldCaptain() || player.isToldCaroline()) {
+                System.out.println(data.getUI().get("win_betrayal"));
+                player.setWinState(-1);
+            }
+            else if (player.isLucyWithMe()) {
+                System.out.println(data.getUI().get("win_with_lucy"));
+                this.exit = true;
+            }
+            else {
+                System.out.println(data.getUI().get("win_solo"));
+                this.exit = true;
+            }
         }
     }
 
@@ -153,6 +165,7 @@ public class Console {
                             System.out.println("Lucy: 'Alright, I'll wait for you here.'");
                         } else if (choice == 2) {
                             npc.setFollower(true);
+                            player.setLucyWithMe(true);
                             System.out.println("Lucy: 'Okay, I'll come with you. Don't leave me alone.'");
                             player.getCurrRoom().getCharacters().remove(npc);
                         }
@@ -173,14 +186,17 @@ public class Console {
                             System.out.println("Captain: 'I'm not giving you anything until you warn Caroline. Go tell her, then we'll talk.'");
                             System.out.println("The Captain pushes past you and rushes towards Escape Module 2.");
                             player.getCurrRoom().getCharacters().remove(npc);
+                            player.setToldCaptain(true);
                             data.locateRoom("Escape Module 2").addCharacter(npc);
+                            npc.getDialogue().remove(2);
 
                         } else if (choice == 3) {
                             System.out.println("Captain: 'Finally a reasonable idea. See ya, Hayers!'");
-                            System.out.println("Captain: 'Finally a reasonable idea. See ya, Hayers!'");
                             System.out.println("The Captain cowardly abandons his post and sprints towards Escape Module 2.");
                             player.getCurrRoom().getCharacters().remove(npc);
+                            player.setToldCaptain(true);
                             data.locateRoom("Escape Module 2").addCharacter(npc);
+                            npc.getDialogue().remove(3);
                         } else if (choice == 4) {
                             System.out.println("You left the Captain alone.");
                         }
@@ -191,6 +207,7 @@ public class Console {
                             System.out.println("Caroline: 'Fine! I wasn't talking to you anyway.'");
                             System.out.println("Caroline packs her things and runs away towards Escape Module 2.");
                             player.getCurrRoom().getCharacters().remove(npc);
+                            player.setToldCaroline(true);
                             data.locateRoom("Escape Module 2").addCharacter(npc);
                         } else if (choice == 2) {
                             System.out.println("You left Caroline alone.");

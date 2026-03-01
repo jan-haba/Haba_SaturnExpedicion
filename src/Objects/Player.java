@@ -19,8 +19,11 @@ public class Player {
     private int timeRemaining;
     private int loopCount;
     private String choosenPath;
+    private boolean toldCaptain;
+    private boolean toldCaroline;
+    private boolean lucyWithMe;
 
-    public Player(String name, Room currRoom, boolean isSuitEquiped, int winState, int timeRemaining, int loopCount, String choosenPath) {
+    public Player(String name, Room currRoom, boolean isSuitEquiped, int winState, int timeRemaining, int loopCount, String choosenPath,boolean toldCaptain, boolean toldCaroline, boolean lucyWithMe) {
         this.inventory = new Item[4];
         this.name = name;
         this.currRoom = currRoom;
@@ -29,6 +32,10 @@ public class Player {
         this.loopCount = loopCount;
         this.timeRemaining = timeRemaining;
         this.choosenPath = choosenPath;
+        this.toldCaptain = toldCaptain;
+        this.toldCaroline = toldCaroline;
+        this.lucyWithMe = lucyWithMe;
+
     }
 
     /**
@@ -215,5 +222,33 @@ public class Player {
     }
     public void setChoosenPath(String choosenPath) {
         this.choosenPath = choosenPath;
+    }
+
+    public boolean isLucyWithMe() {
+        return lucyWithMe;
+    }
+
+    public void setLucyWithMe(boolean lucyWithMe) {
+        this.lucyWithMe = lucyWithMe;
+    }
+
+    public boolean isToldCaroline() {
+        return toldCaroline;
+    }
+
+    public void setToldCaroline(boolean toldCaroline) {
+        this.toldCaroline = toldCaroline;
+    }
+
+    public boolean isToldCaptain() {
+        return toldCaptain;
+    }
+
+    public void setToldCaptain(boolean toldCaptain) {
+        this.toldCaptain = toldCaptain;
+    }
+
+    public void setLoopCount(int loopCount) {
+        this.loopCount = loopCount;
     }
 }

@@ -26,7 +26,7 @@ public class GameEngine {
      */
     public GameEngine( ) {
         loadAndLinkData();
-        this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false,0,0,1,"");
+        this.player = new Player("Markus Hayers",gameData.locateRoom("Reactor"),false,0,0,1,"",false, false,false);
         this.console = new Console(player,gameData);
     }
 
@@ -112,7 +112,7 @@ public class GameEngine {
             System.out.println("\nWrite help to show all of the available commands (write description to learn more about your current room).");
 
             console.setExit(false);
-            player.setTimeRemaining(10);
+            player.setTimeRemaining(3600);
             startRealTimeTimer();
 
             console.start();

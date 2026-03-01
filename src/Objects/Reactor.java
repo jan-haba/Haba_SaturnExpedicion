@@ -38,7 +38,6 @@ public class  Reactor extends GameObject{
 
         System.out.println("\n[INITIATING REACTOR REPAIR SEQUENCE...]");
 
-        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
 
         while (!isFixed) {
